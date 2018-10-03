@@ -7,7 +7,7 @@
 
     if($_FILES["file"]["error"]>0)
     {
-        echo "Error:".$_FILES["file"]["error"];
+        echo "<script>alert('請選取檔案進行上傳'); location.href = 'http://localhost/Missingdata/index.php';</script>";
     }
     else
     {
@@ -17,7 +17,8 @@
         // echo "暫存名稱:".$tmp_name."<br/>";
         // echo "檔名:".$name."已修改為".$new_name;
 
-        if($type=="application/pdf" || $type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||$type=="application/vnd.ms-excel")
+        //csv
+        if($type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||$type=="application/vnd.ms-excel")
         {
           if($sizemb<3)
           {
@@ -29,15 +30,16 @@
                 'name'=>$name,
                 'new_name'=>$new_name,
                 'type'=>$type,
-                'size'=>$size
-                
+                'size'=>$size                
             );
             $url=http_build_query($queries);
 
             move_uploaded_file($tmp_name,"upload/".$new_name);  
             $params = $new_name; //傳遞給python指令碼的入口引數  
-            $path="python missing.py "; //需要注意的是：末尾要加一個空格
-            passthru($path.$params);//等同於命令`python python.py 引數`，並接收列印出來的資訊 
+            $pathdata="python missing.py "; //需要注意的是：末尾要加一個空格
+            $pathphoto="python missingnono.py ";
+            passthru($pathdata.$params);//等同於命令`python python.py 引數`，並接收列印出來的資訊 
+            passthru($pathphoto.$params);
             header("Location: http://localhost/Missingdata/data.php?$url");
             exit;            
           }

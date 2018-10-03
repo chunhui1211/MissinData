@@ -8,7 +8,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-  </head>
+    <style>
+    .msno{
+        width:450px;
+        height:300px;
+    }
+    </style>
+</head>
   <body style="background-color: rgb(243, 243, 243);">
   <div class="container-fluid"> 
     <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px">
@@ -18,18 +24,59 @@
     </div>
     </div>
    <div class="container-fluid"> 
-    <div class="row mt-5">
-        <div class="col-5">
-            <?php
-            $new_name=$_GET["new_name"];
-            echo "<p class='lead'>檔名新名稱:".$new_name."</p>";
+   <?php 
+        $new_name=$_GET["new_name"];
+        echo "<p class='lead'>檔名新名稱:".$new_name."</p>";
+    ?>
+   <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#exampleModal">重新上傳</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">重新上傳檔案</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <p>目前檔案:</p>
+                <?php echo "<p class='lead'>".$new_name."</p>";?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='http://localhost/Missingdata/index.php'">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    </div>    
+    <div class="row mt-5">     
+    <div class="col">
+            <?php     
+            echo "<img class=\"msno\" src=\"./photo/".$new_name."1.png\">";
+            ?>
+        </div>
+        <div class="col">
+            <?php 
+            echo "<img class=\"msno\" src=\"./photo/".$new_name."2.png\">";
+            ?>
+        </div>
+        <div class="col">
+            <?php 
+            echo "<img class=\"msno\" src=\"./photo/".$new_name."3.png\">";
+            ?>
+            </div>
+        
+    </div>
+    <div class="row  mt-3">
+       <div class="col">
+       <?php
+           
             $path="./missinginfo/".$new_name.".html";
             include ($path);    
             ?>
-        </div>
-        <div class="col-5">
-        
-        </div>
+       </div>
     </div>
 </div>
     

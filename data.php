@@ -5,7 +5,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <style type="text/css">
@@ -37,7 +36,6 @@
     ?>
     </div>
     <div class="col align-self-center">
-    <!-- <button type="button" class="btn btn-info"  onclick="location.href='http://localhost/0919/index.php'">重新上傳</button> -->
     <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#exampleModal">重新上傳</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -67,11 +65,11 @@
         <div class="col">
 <?php      
         require_once "C:/xampp/htdocs/0919/PHPExcel/Classes/PHPExcel.php";
-        $excelObj = PHPExcel_IOFactory::load("upload/".$new_name);   
+        $excelObj = PHPExcel_IOFactory::load("upload/".$new_name);  
         $worksheet = $excelObj->getSheet(0);
         $lastRow = $worksheet->getHighestRow();
         $lastColumn = $worksheet->getHighestColumn(); 
-
+               
         echo '<table>';      
         for($row=1;$row<=$worksheet->getHighestRow();$row++)
         {
