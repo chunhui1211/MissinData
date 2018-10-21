@@ -1,9 +1,19 @@
 <?php
-    $new_name=$_POST["new_name"];
-    echo $new_name;
-    $params = $new_name; //傳遞給python指令碼的入口引數
-    $pathimputation="python imputation.py ";
-    passthru($pathimputation.$params);
-    header("Location: http://localhost/Missingdata/afterload.php?new_name=$new_name");
+    session_start();
+    $new_name=$_SESSION['new_name'];  
+    
+    $sum=null;
+    if ($_POST['head']!=null)
+    {
+        for($i=0;$i<count($_POST['head']);$i++)
+        {
+            $varphp=$_POST['head'][$i]; 
+            $sum=$sum.$varphp.";";            
+        }
+    }
+    $varpython="python imputation.py ";
+    $var=$varpython.$new_name.";".$sum; 
+    echo shell_exec($var);
+    header("Location: http://localhost/Missingdata/afterload.php");   
     exit;
 ?>

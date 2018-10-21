@@ -11,6 +11,10 @@
     td{
         border:1px solid #ddd;
     }
+    .msno{
+        width:450px;
+        height:300px;
+    }
     </style>
   </head>
   <body>
@@ -24,13 +28,46 @@
     </div>
   </div>
 </div>
-<div class="container">
-    
-
+<div class="container-fluid">
 <?php 
-    $new_name=$_GET["new_name"];
-    echo "<p class='lead'>檔名新名稱:".$new_name."</p>";
+    session_start();
+    $new_name=$_SESSION['new_name']; 
+    echo "<p class='lead'>檔案名稱:".$new_name."</p>";
 ?>
+
+   <div class="row mt-5">     
+        <div class="col">
+            <?php   
+            $filename="./afterphoto/".$new_name."1.png";
+            if(file_exists($filename))
+            {
+                echo  " <a href=\"photo/".$new_name."1.png\" class=\"fancybox\">";
+                echo "<img class=\"msno\" src=\"./afterphoto/".$new_name."1.png\"></a>";
+            }
+            ?>    
+        </div>
+        <div class="col">
+            <?php 
+            $filename="./afterphoto/".$new_name."2.png";
+            if(file_exists($filename))
+            {
+                echo  " <a href=\"photo/".$new_name."2.png\" class=\"fancybox\">";
+                echo "<img class=\"msno\" src=\"./afterphoto/".$new_name."2.png\"></a>";
+            }
+            ?>
+        </div>
+        <div class="col">
+            <?php 
+            $filename="./afterphoto/".$new_name."3.png";
+            if(file_exists($filename))
+            {
+                echo  " <a href=\"photo/".$new_name."3.png\" class=\"fancybox\">";
+                echo "<img class=\"msno\" src=\"./afterphoto/".$new_name."3.png\"></a>";
+            }       
+            ?>
+        </div>            
+</div>
+    <div class="container-fluid">       
     <div class="row mt-2">
         <div class="col">
 <?php      
@@ -63,5 +100,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+       <!-- jQuery v1.9.1 -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- fancyBox v2.1.5 -->
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<script>
+$(document).ready(function() {
+	$(".fancybox").fancybox();
+});
+    </script>
   </body>
 </html>

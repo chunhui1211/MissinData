@@ -8,17 +8,20 @@ import os
 
 params = sys.argv[1] #即為獲取到的PHP傳入python的入口引數
 path=r'./upload/'+params
-# path=r'./upload/Wifi.xlsx'
+# path=r'./upload/'+'titanic-181020033133.csv'
 
 if (os.path.splitext(path)[-1]==".csv"):
-    df=pd.read_csv(path)
+    df=pd.read_csv(path, parse_dates=True, encoding='UTF-8')
+    # for i in df:
+    #     print(df[i].name )
+    #     print (df[i].dtype)
 
 elif (os.path.splitext(path)[-1]==".xlsx"):
     df = pd.read_excel(path, index_col=0)
-    # df.to_csv(params+'.csv', encoding='utf-8')
+    df.to_csv(params+'.csv', encoding='utf-8')
     
 if __name__=='__main__':
     ptr=pandas_profiling.ProfileReport(df) 
-    ptr.to_file('./missinginfo/'+params+'.html')  
+    ptr.to_file(outputfile='./missinginfo/'+params+'.html')  
 
  
