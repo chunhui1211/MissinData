@@ -26,7 +26,6 @@
         <input type="file" name="file" id="file">
         <!-- <input type="submit" name="submit" value="上傳檔案">   -->
         <button type="submit" class="btn btn-info" name="submit">上傳檔案</button>
-
         </form>
         </div>
     </div>

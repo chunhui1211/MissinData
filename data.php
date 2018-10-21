@@ -59,7 +59,10 @@
     </div>
   </div>
 </div>
-<button type="button" class="btn"  onclick="location.href='http://localhost/Missingdata/beforevisual.php'">資料視覺化</button>
+        <form action="beforedatafile.php" method="post" enctype="multipart/form-data">
+          <button type="submit" class="btn mt-3" name="submit">資料視覺化</button>
+        </form>
+<!-- <button type="button" class="btn"  onclick="location.href='http://localhost/Missingdata/beforevisual.php'">資料視覺化</button> -->
     </div>
   </div>
     <div class="row mt-2">
