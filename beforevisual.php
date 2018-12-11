@@ -66,7 +66,7 @@
             $filename="./photo/".$new_name."1.png";
             if(file_exists($filename))
             {
-                echo  " <a href=\"photo/".$new_name."1.png\" class=\"fancybox\">";
+                echo  "<a href=\"photo/".$new_name."1.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./photo/".$new_name."1.png\"></a>";
             }
             ?>    
@@ -111,4 +111,9 @@
 	<!-- fancyBox v2.1.5 -->	
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
   </body>
+  <script>
+    $(document).ready(function() {
+        $('.fancybox').fancybox();
+    });
+</script>
 </html>

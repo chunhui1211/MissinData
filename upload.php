@@ -15,9 +15,8 @@
         date_default_timezone_set("Asia/Taipei");
         $new_name=$file[0]."-".date("ymdhis").".".$file[1];
         
-        if($type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||$type=="application/vnd.ms-excel")
+        if($type=="application/vnd.ms-excel" ||$type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         {
-            
             // $baseUrl='http://localhost/Missingdata/data.php?';
             // $queries=array(
             //     'name'=>$name,
@@ -40,7 +39,7 @@
             $_SESSION['new_name']=$new_name; 
             header("Location: http://localhost/Missingdata/data.php");
             exit;            
-                   
+                  
         }
         else
         {
