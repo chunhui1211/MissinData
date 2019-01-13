@@ -55,7 +55,8 @@
                 </div>
         </div>
         <div class="col-1">
-            <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/setimputation.php'">設定填補</button>      
+            <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">設定填補</button>   
+            <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/setimputation.php'">設定填補1</button>       
         </div>
         <div class="col-10">         
         </div>

@@ -3,11 +3,11 @@
     $new_name=$_SESSION['new_name'];  
     
     $sum=null;
-    if ($_POST['head']!=null)
+    if ($_POST['colname']!=null)
     {
-        for($i=0;$i<count($_POST['head']);$i++)
+        for($i=0;$i<count($_POST['colname']);$i++)
         {
-            $varphp=$_POST['head'][$i]; 
+            $varphp=$_POST['colname'][$i]; 
             $sum=$sum.$varphp.";";            
         }
     }

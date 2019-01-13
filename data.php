@@ -62,7 +62,6 @@
         <form action="beforedatafile.php" method="post" enctype="multipart/form-data">
           <button type="submit" class="btn mt-3" name="submit">資料視覺化</button>
         </form>
-<!-- <button type="button" class="btn"  onclick="location.href='http://localhost/Missingdata/beforevisual.php'">資料視覺化</button> -->
     </div>
   </div>
     <div class="row mt-2">
@@ -73,24 +72,42 @@
         $worksheet = $excelObj->getSheet(0);
 
         $toCol = $worksheet->getHighestColumn();$toCol++;
-        //  $array=null;
-         $array=array();
+
+        // $array=array();
         
+        // for($col = "A"; $col != $toCol; $col++) 
+        // { 
+        //   if ($row=1) 
+        //   {   
+        //     $head=$worksheet->getCell($col.$row)->getValue();
+        //     array_push($array,$head);                
+        //   }            
+        //   else 
+        //     break;
+        // } 
+        // $_SESSION['head']=$array;
+
+        $arraycol=array();
+        $array=array();
         for($col = "A"; $col != $toCol; $col++) 
         { 
-          if ($row=1) 
-          {   
-            $head=$worksheet->getCell($col.$row)->getValue();
-            // $array=$array.$head;
-            array_push($array,$head);  
-                   
-          }            
-          else 
-            break;
+          for($row=1;$row<=$worksheet->getHighestRow();$row++)
+          {
+            if($worksheet->getCell($col.$row)->getValue()===null)
+            {
+              $roww=1;           
+              $head=$worksheet->getCell($col.$roww)->getValue();
+              array_push($arraycol,$col);
+              array_push($array,$head);
+              // echo "<h5>$col";
+              // echo "<h5>$head"; 
+              break;
+            }
+          }                                
         } 
-        // print_r($array); 
-        // session_start();
-        $_SESSION['head']=$array;
+        $_SESSION['col']=$arraycol;
+        $_SESSION['colname']=$array;
+        
 
         echo '<table>';      
         for($row=1;$row<=$worksheet->getHighestRow();$row++)
@@ -107,7 +124,8 @@
         }  
         echo '</table>';
         // echo "<script type='text/javascript'>console.log($a);</script>";
-        
+
+
 ?>
     </div>
 </div> 
