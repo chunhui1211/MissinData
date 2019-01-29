@@ -4,16 +4,14 @@
     // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    {
-        "name": "Pyramid",
-        "type": "python",
-        "request": "launch",
-        "args": [
-            "${workspaceFolder}/development.ini"
-        ],
-        "pyramid": true,
-        "jinja": true
-    },
+        {
+            "name": "Python: Current File (Integrated Terminal)",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "stopOnEntry": true
+        },
         {
             "name": "Python: Terminal (external)",
             "type": "python",

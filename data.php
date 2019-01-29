@@ -87,8 +87,8 @@
         // } 
         // $_SESSION['head']=$array;
 
-        $arraycol=array();
-        $array=array();
+
+        $arrayhead=array();
         for($col = "A"; $col != $toCol; $col++) 
         { 
           for($row=1;$row<=$worksheet->getHighestRow();$row++)
@@ -97,16 +97,12 @@
             {
               $roww=1;           
               $head=$worksheet->getCell($col.$roww)->getValue();
-              array_push($arraycol,$col);
-              array_push($array,$head);
-              // echo "<h5>$col";
-              // echo "<h5>$head"; 
+              array_push($arrayhead,$head);
               break;
             }
           }                                
         } 
-        $_SESSION['col']=$arraycol;
-        $_SESSION['colname']=$array;
+        $_SESSION['colname']=$arrayhead;
         
 
         echo '<table>';      

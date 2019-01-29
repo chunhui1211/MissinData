@@ -8,7 +8,7 @@ import os
 
 params = sys.argv[1] #即為獲取到的PHP傳入python的入口引數
 path=r'./upload/'+params
-# path=r'./upload/'+'titanic-181020033133.csv'
+# path=r'./upload/'+'titanic-190117120416.csv'
 
 if (os.path.splitext(path)[-1]==".csv"):
     df=pd.read_csv(path, parse_dates=True, encoding='UTF-8')

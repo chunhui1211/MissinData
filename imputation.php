@@ -1,14 +1,15 @@
 <?php
     session_start();
     $new_name=$_SESSION['new_name'];  
-    
-    $sum=null;
+    $colname=$_SESSION['colname']; 
+    $method=$_SESSION['method']; 
+    // $sum=null;
     if ($_POST['colname']!=null)
     {
         for($i=0;$i<count($_POST['colname']);$i++)
         {
             $varphp=$_POST['colname'][$i]; 
-            $sum=$sum.$varphp.";";            
+            $sum=$varphp.";".$method.";";            
         }
     }
     $varpython="python imputation.py ";
