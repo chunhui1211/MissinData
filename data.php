@@ -70,7 +70,6 @@
         require_once "C:/xampp/htdocs/0919/PHPExcel/Classes/PHPExcel.php";
         $excelObj = PHPExcel_IOFactory::load("upload/".$_SESSION['new_name']);  
         $worksheet = $excelObj->getSheet(0);
-
         $toCol = $worksheet->getHighestColumn();$toCol++;
 
         // $array=array();
@@ -86,7 +85,6 @@
         //     break;
         // } 
         // $_SESSION['head']=$array;
-
 
         $arrayhead=array();
         for($col = "A"; $col != $toCol; $col++) 

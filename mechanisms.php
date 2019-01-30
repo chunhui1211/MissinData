@@ -22,9 +22,7 @@
         <div class="col-2"></div>
         <div class="col-10">
         <?php
-            // $new_name=$_GET["new_name"];
-            // $_SESSION['new_name']=$new_name;
-            session_start();
+            session_start();      
             $new_name=$_SESSION['new_name'];  
             echo "<p class='lead'>檔案名稱:".$new_name."</p>";
         ?> 
@@ -46,21 +44,12 @@
         <input type="radio" name="mrbook[]" value="MNAR" />MNAR
         <hr>
         <h4>填補方法</h4>
-        <input type="radio" name="method" value="列表刪除法" />列表刪除法
-        <input type="radio" name="method" value="平均值" />平均值
+        <input type="radio" name="method" value="del" />列表刪除法
+        <input type="radio" name="method" value="avg" />平均值
         <input type="radio" name="method" value="眾值" />眾值
         <input type="radio" name="method" value="最近鄰居法" />最近鄰居法
         <input type="radio" name="method" value="線性迴歸法" />線性迴歸法
         <input type="radio" name="method" value="邏輯回歸法" />邏輯回歸法
-        <!-- <input type="submit" name="submit" value="Get Selected Values" /> -->
-        <?php  
-        if(isset($_POST['method']))
-        {
-            $_SESSION['method']=$_POST['method'];
-            echo $_SESSION['method'];
-        }
-   
-        ?>
         <hr>
         <button type="submit" class="btn" name="submit">送出</button>
         </form>

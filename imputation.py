@@ -1,31 +1,34 @@
 #%%
 import pandas as pd
 import sys 
-params='titanic-190125105624.csv;Age;平均值'
-# params=params.split(';',1)
-# thead=params[1].split(';')[:-1]
-# params=sys.argv[1] 
+# params='titanic-190125105624.csv;Age;平均值'
+
+params=sys.argv[1] 
 params=params.split(';')
 file=params[0]
 thead=params[1]
 method=params[2]
+# print(file)
+# print(thead)
+# print(method)
+
 path=r'./upload/'+file
 df=pd.read_csv(path)
 
 newthead=[]
 for column in df: 
     newthead.append(df[column].name)
-
-def intersection(lst1, lst2): 
-    lst = [value for value in lst1 if value in lst2] 
-    return lst 
-def difference(lst1, lst2): 
-    lst = [value for value in lst1 if value not in lst2] 
-    return lst 
     
-x=intersection(newthead, thead)
-y=difference(newthead,thead)
-            
+# print(newthead)
+# def intersection(lst1, lst2): 
+#     lst = [value for value in lst1 if value in lst2] 
+#     return lst 
+# def difference(lst1, lst2): 
+#     lst = [value for value in lst1 if value not in lst2] 
+#     return lst   
+# x=intersection(newthead, thead)
+# y=difference(newthead,thead)
+
 def drop_var(df,var):
     df = df.drop(var,axis=1)
     return df
@@ -38,14 +41,21 @@ def replace_custom(df,var,value):
 
 
 
-if (method=='平均值'):
+if (method=='avg'):
     for column in df:  
-        for i in x:
-            if(df[column].name==i):
+            if(df[column].name==thead):
                 newdf = replace_mean(df,column)
                 df=newdf
+    # for column in df:  
+    #     for i in x:
+    #         if(df[column].name==i):
+    #             print(df[column].name)
+    #             print(i)
+    #             newdf = replace_mean(df,column)
+    #             df=newdf
 else:
    df=df
+
 
 
 df.to_csv('./download/'+params[0])

@@ -28,6 +28,7 @@
     <div class="row ml-5 mt-3">
     <?php 
         session_start();
+        unset($_SESSION['method']);
         $new_name=$_SESSION['new_name'];     
         echo "<p class='lead '>檔名新名稱:".$new_name."</p>";  
     ?> 
@@ -56,7 +57,6 @@
         </div>
         <div class="col-1">
             <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">設定填補</button>   
-            <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/setimputation.php'">設定填補1</button>       
         </div>
         <div class="col-10">         
         </div>
