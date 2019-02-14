@@ -17,8 +17,6 @@
     $varpython="python imputation.py ";
     $var=$varpython.$sum; 
     echo $sum;
-    // echo "<br/>";
-    // print_r($_SESSION);
     echo shell_exec($var);
     header("Location: http://localhost/Missingdata/afterload.php");   
     exit;

@@ -46,10 +46,10 @@
         <h4>填補方法</h4>
         <input type="radio" name="method" value="del" />列表刪除法
         <input type="radio" name="method" value="avg" />平均值
-        <input type="radio" name="method" value="眾值" />眾值
-        <input type="radio" name="method" value="最近鄰居法" />最近鄰居法
-        <input type="radio" name="method" value="線性迴歸法" />線性迴歸法
-        <input type="radio" name="method" value="邏輯回歸法" />邏輯回歸法
+        <input type="radio" name="method" value="mode" />眾值
+        <input type="radio" name="method" value="knn" />最近鄰居法
+        <input type="radio" name="method" value="linear" />線性迴歸法
+        <input type="radio" name="method" value="logistic" />邏輯迴歸法
         <hr>
         <button type="submit" class="btn" name="submit">送出</button>
         </form>
