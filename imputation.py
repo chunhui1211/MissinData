@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from sklearn import neighbors
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression,LogisticRegression
 # params='titanic-190125105624.csv;Age;平均值'
 params=sys.argv[1] 
 params=params.split(';')
@@ -15,9 +15,11 @@ print(params)
 path=r'./upload/'+file
 df=pd.read_csv(path)
 
-newthead=[]
-for column in df: 
-    newthead.append(df[column].name)
+# newthead=[]
+# for column in df: 
+#     newthead.append(df[column].name)
+
+
 
 def drop_var(df,var):#行
     df = df.drop(var,axis=1)
@@ -31,8 +33,8 @@ def replace_mean(df,var):
 def replace_custom(df,var,value):
     df[var] = df[var].fillna(value)
     return df
-def replace_knn(df,var):
-    train_df = pd.read_csv(path)  
+def replace_knn(train_df,var):
+    # train_df = pd.read_csv(path)  
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         train_df=train_df.drop([i],axis=1)
@@ -59,34 +61,53 @@ def replace_knn(df,var):
         new_df[var].loc[xx]=ynew[0]       
     return new_df
 
-def replace_linear(df,var):
-    train_df = pd.read_csv(path)  
+def replace_linear(train_df,var):
+    # train_df = pd.read_csv(path)  
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         train_df=train_df.drop([i],axis=1)
     x=train_df.dropna()
-    y=x.Age
+    y=x.var
     x=x.drop([var],1)
     lm=LinearRegression()
     trained_model=lm.fit(x,y)
     trained_model.score(x,y)
-    test_x=train_df[train_df.Age.isnull()].drop([var],1)
+    test_x=train_df[train_df.var.isnull()].drop([var],1)
     test_x.fillna(0,inplace=True)
     lm.predict(test_x)
 
     new_df = pd.read_csv(path) 
-    data_null_len=len(train_df[train_df.Age.isnull()])
+    data_null_len=len(train_df[train_df.var.isnull()])
 
     for i in range(data_null_len):
-        xx=train_df[train_df.Age.isnull()].index[i]
-        new_df['Age'].loc[xx]=lm.predict(test_x)[i]
+        xx=train_df[train_df.var.isnull()].index[i]
+        new_df[var].loc[xx]=lm.predict(test_x)[i]
     return new_df
-    
+def replace_logistic(train_df,var):
+    # train_df = pd.read_csv(path)  
+    del_col=train_df.select_dtypes(include=['object']).columns
+    for i in del_col:
+        train_df=train_df.drop([i],axis=1)
+    x=df.dropna()
+    y=x.var
+    x=x.drop([var],1)
+    lg=LogisticRegression()
+    lg.fit(x,y)
+    test_x=train_df[train_df.var.isnull()].drop([var],1)
+    test_x.fillna(0,inplace=True)
+    lg.predict(test_x)
+    new_df = pd.read_csv(path) 
+    data_null_len=len(train_df[train_df.var.isnull()])
+    for i in range(data_null_len):
+            xx=train_df[train_df.var.isnull()].index[i]
+            new_df[var].loc[xx]=lm.predict(test_x)[i]
+
+    return new_df
 
 
 for column in df: 
     if(df[column].name==thead):
-        if (method=='avg'):
+        if (method=='mean'):
             df = replace_mean(df,column)
 
         elif (method=='mode'):           
@@ -96,16 +117,23 @@ for column in df:
         elif (method=='del'):
             df=del_var(df,column)
 
+        elif (method=='delrow'):
+            df=drop_var(df,column)
+
         elif (method=='knn'):
             df=replace_knn(df,column)
 
         elif (method=='linear'):
             df=replace_linear(df,column)
 
+        elif (method=='logistic'):
+            df=replace_logistic(df,column)
+
         else:
             df=df
 
 df.to_csv('./download/'+file)
+
 
 
 # def intersection(lst1, lst2): 

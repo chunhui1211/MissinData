@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>afterload</title>
+    <title>MissingData</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,9 +17,9 @@
     }
     </style>
   </head>
-  <body>
+  <body style="background-color: rgb(243, 243, 243);font-family:Microsoft JhengHei;">
 <div class="container-fluid"> 
-  <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px">
+  <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px;">
         <div class="col">
            <h1>Missing Data</h1>
         </div>
@@ -33,40 +33,25 @@
     session_start();
     $new_name=$_SESSION['new_name']; 
     echo "<p class='lead'>檔案名稱:".$new_name."</p>";
+    $method=$_SESSION['method']; 
+    if($method=="del")
+        $method="列表刪除";
+    else if($method=="delrow")
+        $method="欄位刪除";
+    else if($method=="mean")
+        $method="平均值"; 
+    else if($method=="mode")
+        $method="眾值";  
+    else if($method=="knn")
+        $method="最近鄰居法";   
+    else if($method=="linear")
+        $method="線性迴歸法";   
+    else if($method=="logistic")
+        $method="邏輯迴歸法";    
+    echo "<p class='lead'>方法:".$method."</p>";
+    $col=$_SESSION['col']; 
+    echo "<p class='lead'>欄位:".$col."</p>";
 ?>
-
-   <div class="row mt-5">     
-        <div class="col">
-            <?php   
-            $filename="./afterphoto/".$new_name."1.png";
-            if(file_exists($filename))
-            {
-                echo  " <a href=\"photo/".$new_name."1.png\" class=\"fancybox\">";
-                echo "<img class=\"msno\" src=\"./afterphoto/".$new_name."1.png\"></a>";
-            }
-            ?>    
-        </div>
-        <div class="col">
-            <?php 
-            $filename="./afterphoto/".$new_name."2.png";
-            if(file_exists($filename))
-            {
-                echo  " <a href=\"photo/".$new_name."2.png\" class=\"fancybox\">";
-                echo "<img class=\"msno\" src=\"./afterphoto/".$new_name."2.png\"></a>";
-            }
-            ?>
-        </div>
-        <div class="col">
-            <?php 
-            $filename="./afterphoto/".$new_name."3.png";
-            if(file_exists($filename))
-            {
-                echo  " <a href=\"photo/".$new_name."3.png\" class=\"fancybox\">";
-                echo "<img class=\"msno\" src=\"./afterphoto/".$new_name."3.png\"></a>";
-            }       
-            ?>
-        </div>            
-</div>
     <div class="container-fluid">       
     <div class="row mt-2">
         <div class="col">
