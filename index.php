@@ -8,8 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body style="background-color: rgb(243, 243, 243);font-family:Microsoft JhengHei;">
+
 <div class="container-fluid">
     <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px">
         <div class="col">
@@ -25,7 +27,19 @@
         <span>檔案名稱:</span>
         <input type="file" name="file" id="file">
         <!-- <input type="submit" name="submit" value="上傳檔案">   -->
-        <button type="submit" class="btn btn-info" name="submit">上傳檔案</button>
+        <button type="submit" class="btn btn-info" name="submit" data-toggle="modal" data-target="#Modal">上傳檔案</button>
+
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
+                <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </form>
         </div>
     </div>
