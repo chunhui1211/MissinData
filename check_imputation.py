@@ -3,7 +3,6 @@ import sys
 import pandas as pd
 import numpy as np
 import datetime
-from pathlib import Path
 from sklearn import neighbors
 from sklearn.linear_model import LinearRegression,LogisticRegression
 # params='titanic-190125105624.csv;Age;平均值'
@@ -12,10 +11,9 @@ params=params.split(';')
 file=params[0]
 thead=params[1]
 method=params[2]
-
+print(params)
 path=r'./upload/'+file
 df=pd.read_csv(path)
-
 
 def drop_var(df,var):#行
     df = df.drop(var,axis=1)
@@ -129,4 +127,5 @@ for column in df:
         else:
             df=df
 
-df.to_csv('./download/'+file)
+# df.to_csv('./download/'+file)
+df.to_csv(path)

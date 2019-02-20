@@ -29,17 +29,15 @@
             echo "<p>$new_name</p>"
         ?> 
         <hr>
-        <h4><strong>遺漏欄位</strong></h4>
         <form action="imputation.php" method="post" enctype="multipart/form-data">
+        <h4><strong>遺漏欄位</strong></h4>
         <?php
-
         for($i = 0 ; $i < count($_SESSION['colname']) ; $i++) 
         {         
           echo "<input type='radio' name='colname[]' id='{$_SESSION['colname'][$i]}' value='{$_SESSION['colname'][$i]}'>";
           echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
           echo "<br/>";             
         } 
-
         ?>
         <hr>
         <h4><strong>遺漏機制</strong></h4>       

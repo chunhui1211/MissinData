@@ -52,8 +52,11 @@
     $col=$_SESSION['col']; 
     echo "<p class='lead'>欄位:".$col."</p>";
 ?>
-    <button type="button" class="btn btn-light" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">返回</button>
-    
+    <button type="button" class="btn btn-light" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">返回修改方法</button>
+    <!-- <button type="button" class="btn btn-light" onclick="alert('<?php echo $_SESSION['col'] ?>')">確定此方法</button> -->
+    <form action="check_imputation.php" method="post" enctype="multipart/form-data">
+    <button type="submit" class="btn btn-light" >確定此方法</button>
+    </form>
     <div class="container-fluid">       
     <div class="row mt-2">
         <div class="col">
@@ -92,10 +95,13 @@
 	<!-- fancyBox v2.1.5 -->
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" />
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-<script>
-$(document).ready(function() {
-	$(".fancybox").fancybox();
-});
+    <script>
+    // $(document).ready(function() {
+    //     $(".fancybox").fancybox();
+    // });
+    function divFunction(){
+        alert("123")
+    }
     </script>
   </body>
 </html>
