@@ -26,11 +26,7 @@
   <div class="container">
   <div class="row">
       <div class="col-9">
-    <?php
-    // $name=$_GET["name"];
-    // $type=$_GET["type"];
-    // $size=$_GET["size"];
-    // $new_name=$_GET["new_name"];
+    <?php   
     session_start(); 
     echo "<p class='lead'>檔名名稱:".$_SESSION['name']."</p>";
     echo "<p class='lead'>檔名型態:".$_SESSION['type']."</p>";
@@ -80,6 +76,7 @@
     <div class="row mt-2">
         <div class="col">
 <?php      
+
         require_once "C:/xampp/htdocs/0919/PHPExcel/Classes/PHPExcel.php";
         $excelObj = PHPExcel_IOFactory::load("upload/".$_SESSION['new_name']);  
         $worksheet = $excelObj->getSheet(0);
@@ -130,9 +127,6 @@
             echo "</tr>";           
         }  
         echo '</table>';
-        // echo "<script type='text/javascript'>console.log($a);</script>";
-
-
 ?>
     </div>
 </div> 

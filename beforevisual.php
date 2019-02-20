@@ -28,7 +28,6 @@
     <div class="row ml-5 mt-3">
     <?php 
         session_start();
-        unset($_SESSION['method']);
         $new_name=$_SESSION['new_name'];     
         echo "<p class='lead '>檔名新名稱:".$new_name."</p>";  
     ?> 

@@ -26,7 +26,6 @@
         <form action="upload.php" method="post" enctype="multipart/form-data">
         <span>檔案名稱:</span>
         <input type="file" name="file" id="file">
-        <!-- <input type="submit" name="submit" value="上傳檔案">   -->
         <button type="submit" class="btn btn-info" name="submit" data-toggle="modal" data-target="#Modal">上傳檔案</button>
 
         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -41,6 +40,7 @@
           </div>
 
         </form>
+       
         </div>
     </div>
 </div>

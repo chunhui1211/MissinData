@@ -6,6 +6,8 @@
     }
     else
     {      
+        session_start(); 
+        session_destroy();
         $name=$_FILES["file"]["name"];
         $type=$_FILES['file']['type'];
         $size=$_FILES['file']['size'];   
@@ -32,7 +34,7 @@
             // $pathphoto="python beforemissingno.py ";
             // passthru($pathdata.$params);//等同於命令python python.py，並接收列印出來的資訊 
             // passthru($pathphoto.$params);
-            session_destroy();
+            
             session_start();       
             $_SESSION['name']=$name;
             $_SESSION['type']=$type;

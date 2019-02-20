@@ -52,6 +52,8 @@
     $col=$_SESSION['col']; 
     echo "<p class='lead'>欄位:".$col."</p>";
 ?>
+    <button type="button" class="btn btn-light" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">返回</button>
+    
     <div class="container-fluid">       
     <div class="row mt-2">
         <div class="col">
