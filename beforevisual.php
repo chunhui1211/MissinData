@@ -55,7 +55,10 @@
                 </div>
         </div>
         <div class="col-1">
-            <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">設定填補</button>   
+        <form action="missingcol.php" method="post" enctype="multipart/form-data">
+            <!-- <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">設定填補</button>  -->
+            <button type="submit" class="btn" name="submit">設定填補</button>
+        </form>  
         </div>
         <div class="col-10">         
         </div>

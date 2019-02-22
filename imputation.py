@@ -12,10 +12,8 @@ params=params.split(';')
 file=params[0]
 thead=params[1]
 method=params[2]
-
 path=r'./upload/'+file
 df=pd.read_csv(path)
-
 
 def drop_var(df,var):#行
     df = df.drop(var,axis=1)
@@ -56,7 +54,6 @@ def replace_knn(train_df,var):
         ynew=trained_model.predict(Xnew)
         new_df[var].loc[xx]=ynew[0]       
     return new_df
-
 def replace_linear(train_df,var):
     # train_df = pd.read_csv(path)  
     del_col=train_df.select_dtypes(include=['object']).columns
@@ -129,4 +126,4 @@ for column in df:
         else:
             df=df
 
-df.to_csv('./download/'+file)
+df.to_csv('./download/'+file,index=False)

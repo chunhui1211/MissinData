@@ -32,10 +32,24 @@
         <form action="imputation.php" method="post" enctype="multipart/form-data">
         <h4><strong>遺漏欄位</strong></h4>
         <?php
-        for($i = 0 ; $i < count($_SESSION['colname']) ; $i++) 
+        // for($i = 0 ; $i < count($_SESSION['colname']) ; $i++) 
+        // {         
+        //   echo "<input type='radio' name='colname[]' id='{$_SESSION['colname'][$i]}' value='{$_SESSION['colname'][$i]}'>";
+        //   echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
+        //   echo "<br/>";             
+        // } 
+        echo "<strong>類別型態</strong><br/>";
+        for($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++) 
         {         
-          echo "<input type='radio' name='colname[]' id='{$_SESSION['colname'][$i]}' value='{$_SESSION['colname'][$i]}'>";
-          echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
+          echo "<input type='radio' name='colname[]' id='{$_SESSION['col_cage'][$i]}' value='{$_SESSION['col_cage'][$i]}'>";
+          echo "<label for='{$_SESSION['col_cage'][$i]}'>{$_SESSION['col_cage'][$i]}</label>";
+          echo "<br/>";             
+        } 
+        echo "<strong>數值型態</strong><br/>";
+        for($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) 
+        {         
+          echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
+          echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]}</label>";
           echo "<br/>";             
         } 
         ?>
@@ -78,7 +92,6 @@
               </div>
             </div>
           </div>
-
         </form>
         </div>
     </div>

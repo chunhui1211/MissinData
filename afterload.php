@@ -53,7 +53,7 @@
     echo "<p class='lead'>欄位:".$col."</p>";
 ?>
     <button type="button" class="btn btn-light" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">返回修改方法</button>
-    <!-- <button type="button" class="btn btn-light" onclick="alert('<?php echo $_SESSION['col'] ?>')">確定此方法</button> -->
+  
     <form action="check_imputation.php" method="post" enctype="multipart/form-data">
     <button type="submit" class="btn btn-light" >確定此方法</button>
     </form>

@@ -82,36 +82,25 @@
         $worksheet = $excelObj->getSheet(0);
         $toCol = $worksheet->getHighestColumn();$toCol++;
 
-        // $array=array();
-        
-        // for($col = "A"; $col != $toCol; $col++) 
-        // { 
-        //   if ($row=1) 
-        //   {   
-        //     $head=$worksheet->getCell($col.$row)->getValue();
-        //     array_push($array,$head);                
-        //   }            
-        //   else 
-        //     break;
-        // } 
-        // $_SESSION['head']=$array;
-
         $arrayhead=array();
         for($col = "A"; $col != $toCol; $col++) 
         { 
+          
           for($row=1;$row<=$worksheet->getHighestRow();$row++)
           {
             if($worksheet->getCell($col.$row)->getValue()===null)
             {
-              $roww=1;           
-              $head=$worksheet->getCell($col.$roww)->getValue();
+              $roww=1;         
+              $head=$worksheet->getCell($col.$roww)->getValue();       
               array_push($arrayhead,$head);
               break;
             }
           }                                
         } 
         $_SESSION['colname']=$arrayhead;
-        
+        // echo "<pre>";
+        // print_r($arrayhead); 
+        // echo "</pre>";
 
         echo '<table>';      
         for($row=1;$row<=$worksheet->getHighestRow();$row++)

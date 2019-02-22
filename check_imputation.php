@@ -7,6 +7,7 @@
     $sum=$new_name.";".$colname.";".$method.";";  
     $varpython="python check_imputation.py ";
     $var=$varpython.$sum; 
+    echo $var;
     echo shell_exec($var);
 
     foreach($_SESSION['colname'] as $key => $value){
