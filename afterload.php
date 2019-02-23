@@ -52,11 +52,17 @@
     $col=$_SESSION['col']; 
     echo "<p class='lead'>欄位:".$col."</p>";
 ?>
-    <button type="button" class="btn btn-light" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">返回修改方法</button>
-  
-    <form action="check_imputation.php" method="post" enctype="multipart/form-data">
-    <button type="submit" class="btn btn-light" >確定此方法</button>
-    </form>
+    <div class="row">
+        <div class="col-1">
+        <button type="button" class="btn btn-secondary" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">返回修改</button>
+        </div>
+        <div class="col-1">
+        <form action="check_imputation.php" method="post" enctype="multipart/form-data">
+        <button type="submit" class="btn btn-primary" >確定填補</button>
+        </form>
+        </div>
+    </div>
+    
     <div class="container-fluid">       
     <div class="row mt-2">
         <div class="col">

@@ -6,14 +6,15 @@ import datetime
 from pathlib import Path
 from sklearn import neighbors
 from sklearn.linear_model import LinearRegression,LogisticRegression
-# params='titanic-190125105624.csv;Age;平均值'
+# params='titanic-190223015019.csv;Age;mean'
 params=sys.argv[1] 
 params=params.split(';')
 file=params[0]
 thead=params[1]
 method=params[2]
 path=r'./upload/'+file
-df=pd.read_csv(path)
+df=pd.read_csv(path,engine='python')
+
 
 def drop_var(df,var):#行
     df = df.drop(var,axis=1)
@@ -23,6 +24,7 @@ def del_var(df,var):#列
     return df
 def replace_mean(df,var):
     df[var] =round(df[var].fillna(df[var].mean()))
+    
     return df
 def replace_custom(df,var,value):
     df[var] = df[var].fillna(value)
@@ -98,12 +100,10 @@ def replace_logistic(train_df,var):
 
     return new_df
 
-
 for column in df: 
     if(df[column].name==thead):
         if (method=='mean'):
-            df = replace_mean(df,column)
-
+            df = replace_mean(df,column)        
         elif (method=='mode'):           
             popular = df[column].value_counts().idxmax()
             df = replace_custom(df,column,popular)
@@ -122,8 +122,10 @@ for column in df:
 
         elif (method=='logistic'):
             df=replace_logistic(df,column)
-
         else:
             df=df
+    else:
+        df=df;
+        # continue;
 
 df.to_csv('./download/'+file,index=False)

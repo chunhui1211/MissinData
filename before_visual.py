@@ -30,5 +30,5 @@ if __name__=='__main__':
     msno.heatmap(df)
     plt.savefig('./photo/'+params+'3.png')  
 
-    ptr=pandas_profiling.ProfileReport(df) 
-    ptr.to_file(outputfile='./missinginfo/'+params+'.html')  
+    # ptr=pandas_profiling.ProfileReport(df) 
+    # ptr.to_file(outputfile='./missinginfo/'+params+'.html')  

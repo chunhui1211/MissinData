@@ -31,6 +31,8 @@
         <hr>
         <form action="imputation.php" method="post" enctype="multipart/form-data">
         <h4><strong>遺漏欄位</strong></h4>
+        <strong>類別型態</strong><br/>
+        <div id="cage">
         <?php
         // for($i = 0 ; $i < count($_SESSION['colname']) ; $i++) 
         // {         
@@ -38,21 +40,27 @@
         //   echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
         //   echo "<br/>";             
         // } 
-        echo "<strong>類別型態</strong><br/>";
         for($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++) 
-        {         
+        {       
           echo "<input type='radio' name='colname[]' id='{$_SESSION['col_cage'][$i]}' value='{$_SESSION['col_cage'][$i]}'>";
           echo "<label for='{$_SESSION['col_cage'][$i]}'>{$_SESSION['col_cage'][$i]}</label>";
-          echo "<br/>";             
-        } 
-        echo "<strong>數值型態</strong><br/>";
-        for($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) 
-        {         
-          echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
-          echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]}</label>";
-          echo "<br/>";             
+          echo "<br/>";    
+                 
         } 
         ?>
+        </div>
+        <div id="num">
+        <strong>數值型態</strong><br/>
+        <?php
+        for($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) 
+        {      
+          echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
+          echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]}</label>";
+          echo "<br/>";           
+          
+        } 
+        ?>
+        </div>
         <hr>
         <h4><strong>遺漏機制</strong></h4>       
         <input type="radio" name="mrbook[]" value="MCAR" id='MCAR' />
@@ -78,10 +86,10 @@
         <label for="knn">最近鄰居法</label>
         <input type="radio" name="method" value="linear" id="linear" />
         <label for="linear">線性迴歸法</label>
-        <input type="radio" name="method" value="logistic" id="logistic"/>
-        <label for="logistic">邏輯迴歸法</label>
+        <input type="radio" name="method" value="logistic" id="logistic" />
+        <label for="logistic" >邏輯迴歸法</label>
         <hr>
-        <button type="submit" class="btn" name="submit" data-toggle="modal" data-target="#Modal">送出</button>
+        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal">送出</button>
         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -99,11 +107,53 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script>
+    <script >
+      $( document ).ready(function() {
+
         var method = '<?php echo $_SESSION['method']; ?>';
         var col = '<?php echo $_SESSION['col']; ?>';
-        document.getElementById(method).checked = true;
-        document.getElementById(col).checked = true;
+        // document.getElementById(method).checked = true;
+        // document.getElementById(col).checked = true;
+        
+        if(method!="")
+        {
+          $("#"+method).attr("checked",true);
+        }
+        if(col!="")
+        {
+          $("#"+col).attr("checked",true);
+        }
+        var cage=function(){
+          $('label[for=mean],input#mean').hide();
+            $('label[for=knn],input#knn').hide();
+            $('label[for=linear],input#linear').hide();
+            $('label[for=mode],input#mode').show();
+            $('label[for=logistic],input#logistic').show();
+        };
+        var num=function(){
+          $('label[for=logistic],input#logistic').hide();
+            $('label[for=mean],input#mean').show();
+            $('label[for=mode],input#mode').show();
+            $('label[for=knn],input#knn').show();
+            $('label[for=linear],input#linear').show();
+        };
+
+        if ($("#cage input").is(":checked")) {
+            cage();
+        }
+        if ($("#num input").is(":checked")) {
+            num();
+        }
+
+        $("#cage input").click(function(){
+          cage();
+        })
+        $("#num input").click(function(){
+         num();
+        })
+      });
+        
+
         </script>
   </body>
 </html>

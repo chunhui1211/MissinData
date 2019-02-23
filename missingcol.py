@@ -4,9 +4,7 @@ import numpy as np
 import sys 
 
 file=sys.argv[1] 
-# path=r'./upload/'+file
-# df=pd.read_csv(path)
-path=r'./upload/titanic-190222061731.csv'
+path=r'./upload/'+file
 df=pd.read_csv(path,skipfooter=1)
 
 x=[]
@@ -20,5 +18,5 @@ for col in df.columns:
 
 cage=','.join(x)
 num=','.join(y)
-print(cage,";",num)
+print(cage+";"+num)
 

@@ -15,6 +15,8 @@ print_r($num);
 
 $_SESSION['col_cage']=$cage;
 $_SESSION['col_num']=$num;
+$_SESSION['method']="";
+$_SESSION['col']="";
 header("Location: http://localhost/Missingdata/mechanisms.php");   
 exit;
 ?>

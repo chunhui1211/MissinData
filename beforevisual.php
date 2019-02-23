@@ -57,7 +57,7 @@
         <div class="col-1">
         <form action="missingcol.php" method="post" enctype="multipart/form-data">
             <!-- <button type="button" class="btn" onclick="location.href='http://localhost/Missingdata/mechanisms.php'">設定填補</button>  -->
-            <button type="submit" class="btn" name="submit">設定填補</button>
+            <button type="submit" class="btn btn-primary" name="submit">設定填補</button>
         </form>  
         </div>
         <div class="col-10">         
@@ -91,9 +91,7 @@
             {
                 echo  " <a href=\"photo/".$new_name."3.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./photo/".$new_name."3.png\"></a>";
-            }
-                
-            
+            }   
             ?>
         </div>            
     </div>
@@ -101,7 +99,11 @@
     <div class="col">  
     <?php
     $path="./missinginfo/".$new_name.".html";
-    include ($path);    
+    if(file_exists($path))
+    {
+        include ($path);  
+    }
+      
     ?> 
     </div>       
     </div>

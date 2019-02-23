@@ -124,6 +124,8 @@ for column in df:
 
         else:
             df=df
+    else:
+        df=df;
 
 # df.to_csv('./download/'+file)
 df.to_csv('./upload/'+file,index=False)
