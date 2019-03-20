@@ -3,7 +3,9 @@
     $new_name=$_SESSION['new_name'];  
     $method=$_SESSION['method'];
     $colname=$_SESSION['col'];
-    
+
+    $_SESSION['list']=$_SESSION['list'].$colname.",".$method.";";
+
     $sum=$new_name.";".$colname.";".$method.";";  
     $varpython="python check_imputation.py ";
     $var=$varpython.$sum; 

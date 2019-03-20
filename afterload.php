@@ -58,7 +58,18 @@
         </div>
         <div class="col-1">
         <form action="check_imputation.php" method="post" enctype="multipart/form-data">
-        <button type="submit" class="btn btn-primary" >確定填補</button>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#Modal" >確定填補</button>
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
+                <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </form>
         </div>
     </div>

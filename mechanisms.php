@@ -20,18 +20,36 @@
     </div>
     <div class="container">  
     <div class="row mt-5">
-        <div class="col-2"></div>
-        <div class="col-10">
         <?php
             session_start();      
             $new_name=$_SESSION['new_name'];  
-            echo "<h4><strong>檔案名稱</strong></h4>";
-            echo "<p>$new_name</p>"
-        ?> 
+    
+          ?> 
+        <div class="col-3">
+
+        <button type="button" class="btn btn-warning"  onclick="location.href='download.php?file=<?=$new_name?>'">檔案匯出</button>
+        <br/><br/>
+        <?php
+            if($_SESSION['list']!=null)
+            {           
+              $listcol=$_SESSION['list'];
+              $cutchar = explode(";", $listcol);
+
+              foreach ($cutchar as $key => $value) {
+                $key=$key+1;
+                echo '步驟'.$key.'：=>'.$value.'<br />';
+              }
+            }
+        ?>       
+        </div>
+        <div class="col">    
+
+        <h4><strong>檔案名稱</strong></h4>
+        <p><?=$new_name?></p>       
         <hr>
         <form action="imputation.php" method="post" enctype="multipart/form-data">
         <h4><strong>遺漏欄位</strong></h4>
-        <strong>類別型態</strong><br/>
+        <strong>文字</strong><br/>
         <div id="cage">
         <?php
         // for($i = 0 ; $i < count($_SESSION['colname']) ; $i++) 
@@ -50,7 +68,7 @@
         ?>
         </div>
         <div id="num">
-        <strong>數值型態</strong><br/>
+        <strong>數值</strong><br/>
         <?php
         for($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) 
         {      
@@ -101,6 +119,7 @@
             </div>
           </div>
         </form>
+<br/><br/><br/>
         </div>
     </div>
 </div>

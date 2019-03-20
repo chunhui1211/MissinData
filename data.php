@@ -58,7 +58,7 @@
   </div>
 </div>
         <form action="beforedatafile.php" method="post" enctype="multipart/form-data">
-          <button type="submit" class="btn mt-3" name="submit" data-toggle="modal" data-target="#Modal">資料視覺化</button>
+          <button type="submit" class="btn btn-primary mt-3" name="submit" data-toggle="modal" data-target="#Modal">資料視覺化</button>
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">

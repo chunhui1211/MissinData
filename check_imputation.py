@@ -111,7 +111,7 @@ for column in df:
             df=del_var(df,column)
 
         elif (method=='delrow'):
-            df=drop_var(df,column)
+            df=drop_var(df,column)ㄗㄧ
 
         elif (method=='knn'):
             df=replace_knn(df,column)
