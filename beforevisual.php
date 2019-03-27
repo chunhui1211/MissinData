@@ -26,10 +26,10 @@
     </div>
   <div class="container-fluid">
     <div class="row ml-5 mt-3">
-    <?php 
+    <?php
         session_start();
-        $new_name=$_SESSION['new_name'];     
-        echo "<p class='lead '>檔名新名稱:".$new_name."</p>";  
+        $new_name=$_SESSION['new_name'];
+        echo "<p class='lead '>檔名新名稱:".$new_name."</p>";
     ?> 
         <div class="col-1">
         <button type="button" class="btn"  data-toggle="modal" data-target="#exampleModal">重新上傳</button>
@@ -65,33 +65,30 @@
     </div>
     <div class="row mt-5">     
         <div class="col">
-            <?php   
+            <?php
             $filename="./photo/".$new_name."1.png";
-            if(file_exists($filename))
-            {
+            if (file_exists($filename)) {
                 echo  "<a href=\"photo/".$new_name."1.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./photo/".$new_name."1.png\"></a>";
             }
             ?>    
         </div>
         <div class="col">
-            <?php 
+            <?php
             $filename="./photo/".$new_name."2.png";
-            if(file_exists($filename))
-            {
+            if (file_exists($filename)) {
                 echo  " <a href=\"photo/".$new_name."2.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./photo/".$new_name."2.png\"></a>";
             }
             ?>
         </div>
         <div class="col">
-            <?php 
+            <?php
             $filename="./photo/".$new_name."3.png";
-            if(file_exists($filename))
-            {
+            if (file_exists($filename)) {
                 echo  " <a href=\"photo/".$new_name."3.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./photo/".$new_name."3.png\"></a>";
-            }   
+            }
             ?>
         </div>            
     </div>
@@ -99,9 +96,8 @@
     <div class="col">  
     <?php
     $path="./missinginfo/".$new_name.".html";
-    if(file_exists($path))
-    {
-        include ($path);  
+    if (file_exists($path)) {
+        include($path);
     }
       
     ?> 

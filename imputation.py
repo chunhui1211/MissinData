@@ -2,7 +2,6 @@
 import sys 
 import pandas as pd
 import numpy as np
-import datetime
 from pathlib import Path
 from sklearn import neighbors
 from sklearn.linear_model import LinearRegression,LogisticRegression
@@ -80,24 +79,29 @@ def replace_linear(train_df,var):
 
     return new_df
 def replace_logistic(train_df,var):
-    # train_df = pd.read_csv(path)  
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
+        if(i==var):
+            continue;
         train_df=train_df.drop([i],axis=1)
-    x=df.dropna()
+
+    x=train_df.dropna()
     y=x[var]
     x=x.drop([var],1)
     lg=LogisticRegression()
     lg.fit(x,y)
-    test_x=train_df[train_df[var].isnull()].drop([var],1)
-    test_x.fillna(0,inplace=True)
-    lg.predict(test_x)
-    new_df = pd.read_csv(path) 
-    data_null_len=len(train_df[train_df[var].isnull()])
-    for i in range(data_null_len):
-            xx=train_df[train_df[var].isnull()].index[i]
-            new_df[var].loc[xx]=lm.predict(test_x)[i]
 
+    train_x=train_df[train_df[var].isnull()].drop([var],1)
+    train_x.fillna(0,inplace=True)
+
+    survived_predictions =lg.predict(train_x)
+
+    new_df = pd.read_csv(path) 
+    data_null_len=len(new_df[new_df[var].isnull()])
+    for i in range(data_null_len):
+        xx=train_df[train_df[var].isnull()].index[i] 
+        new_df[var].loc[xx]=lg.predict(train_x)[i]
+        
     return new_df
 
 for column in df: 

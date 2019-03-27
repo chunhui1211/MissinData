@@ -21,8 +21,8 @@
     <div class="container">  
     <div class="row mt-5">
         <?php
-            session_start();      
-            $new_name=$_SESSION['new_name'];  
+            session_start();
+            $new_name=$_SESSION['new_name'];
     
           ?> 
         <div class="col-3">
@@ -30,15 +30,14 @@
         <button type="button" class="btn btn-warning"  onclick="location.href='download.php?file=<?=$new_name?>'">檔案匯出</button>
         <br/><br/>
         <?php
-            if($_SESSION['list']!=null)
-            {           
-              $listcol=$_SESSION['list'];
-              $cutchar = explode(";", $listcol);
+            if ($_SESSION['list']!=null) {
+                $listcol=$_SESSION['list'];
+                $cutchar = explode(";", $listcol);
 
-              foreach ($cutchar as $key => $value) {
-                $key=$key+1;
-                echo '步驟'.$key.'：=>'.$value.'<br />';
-              }
+                foreach ($cutchar as $key => $value) {
+                    $key=$key+1;
+                    echo '步驟'.$key.'：=>'.$value.'<br />';
+                }
             }
         ?>       
         </div>
@@ -47,45 +46,34 @@
         <h4><strong>檔案名稱</strong></h4>
         <p><?=$new_name?></p>       
         <hr>
-        <form action="imputation.php" method="post" enctype="multipart/form-data">
+        <form id="form1" action="imputation.php" method="post" enctype="multipart/form-data">
         <h4><strong>遺漏欄位</strong></h4>
-        <strong>文字</strong><br/>
+        <small>S:文字 N:數字</small>
         <div id="cage">
         <?php
-        // for($i = 0 ; $i < count($_SESSION['colname']) ; $i++) 
-        // {         
-        //   echo "<input type='radio' name='colname[]' id='{$_SESSION['colname'][$i]}' value='{$_SESSION['colname'][$i]}'>";
-        //   echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
-        //   echo "<br/>";             
-        // } 
-        for($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++) 
-        {       
-          echo "<input type='radio' name='colname[]' id='{$_SESSION['col_cage'][$i]}' value='{$_SESSION['col_cage'][$i]}'>";
-          echo "<label for='{$_SESSION['col_cage'][$i]}'>{$_SESSION['col_cage'][$i]}</label>";
-          echo "<br/>";    
-                 
-        } 
+        for ($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++) {
+            echo "<input type='radio' name='colname[]' id='{$_SESSION['col_cage'][$i]}' value='{$_SESSION['col_cage'][$i]}'>";
+            echo "<label for='{$_SESSION['col_cage'][$i]}'>{$_SESSION['col_cage'][$i]} (S)</label>";
+            echo "<br/>";
+        }
         ?>
         </div>
         <div id="num">
-        <strong>數值</strong><br/>
         <?php
-        for($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) 
-        {      
-          echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
-          echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]}</label>";
-          echo "<br/>";           
-          
-        } 
+        for ($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) {
+            echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
+            echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]} (N)</label>";
+            echo "<br/>";
+        }
         ?>
         </div>
         <hr>
         <h4><strong>遺漏機制</strong></h4>       
-        <input type="radio" name="mrbook[]" value="MCAR" id='MCAR' />
+        <input type="radio" name="mrbook" value="MCAR" id='MCAR' />
         <label for='MCAR'>MCAR</label><br/>
-        <input type="radio" name="mrbook[]" value="MAR" id="MAR" />
+        <input type="radio" name="mrbook" value="MAR" id="MAR" />
         <label for='MAR'>MAR</label><br/>
-        <input type="radio" name="mrbook[]" value="MNAR" id="MNAR" />
+        <input type="radio" name="mrbook" value="MNAR" id="MNAR" />
         <label for='MNAR'>MNAR</label><br/>
         <hr>
         <h4><strong>填補方法</strong></h4>
@@ -107,7 +95,16 @@
         <input type="radio" name="method" value="logistic" id="logistic" />
         <label for="logistic" >邏輯迴歸法</label>
         <hr>
-        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal">送出</button>
+        <h4><strong>視覺化圖表</strong></h4>
+        <input type="checkbox"  id="bar" checked>
+        <label  for="bar">長條圖</label>
+        <input type="checkbox"  id="box" checked>
+        <label  for="box">盒狀圖</label>
+        <input type="checkbox"  id="join">
+        <label  for="join">Join</label>
+        <select id="select" name='ycol' class="custom-select" multiple></select>
+        <hr>
+        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" >送出</button>
         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -127,23 +124,58 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script >
-      $( document ).ready(function() {
+      $( document).ready(function() {
 
         var method = '<?php echo $_SESSION['method']; ?>';
         var col = '<?php echo $_SESSION['col']; ?>';
-        // document.getElementById(method).checked = true;
-        // document.getElementById(col).checked = true;
         
-        if(method!="")
-        {
-          $("#"+method).attr("checked",true);
+        
+        $('button[type="submit"]').click(function(){
+          var colname=$('input[name="colname[]"]:checked').length;
+          var method=$('input[name="method"]:checked').length;
+          if(colname==0)
+          {
+            alert("請選擇欄位");
+            return false;
+          }
+          else if(method==0)
+          {
+            alert("請選擇方法");
+            return false; 
+          }
+          else
+          {
+            document.form1.submit();
+            
+          }
+      });
+        // if(method!="")
+        // {
+        //   $('#'+method).attr("checked",true);
+        // }
+        // if(col!="")
+        // {
+        //   $('#'+col).attr("checked",true);
+        // }
+
+        if ($('#cage input').is(':checked')) {      
+            cage();
         }
-        if(col!="")
-        {
-          $("#"+col).attr("checked",true);
+        if ($('#num input').is(':checked')) {
+            num();
         }
-        var cage=function(){
-          $('label[for=mean],input#mean').hide();
+
+        $('#cage input').click(function(){
+          cage();
+        })
+        $('#num input').click(function(){
+         num();
+        })
+      
+      });
+
+      var cage=function(){
+            $('label[for=mean],input#mean').hide();
             $('label[for=knn],input#knn').hide();
             $('label[for=linear],input#linear').hide();
             $('label[for=mode],input#mode').show();
@@ -156,22 +188,36 @@
             $('label[for=knn],input#knn').show();
             $('label[for=linear],input#linear').show();
         };
+        var option=function(){
+          var col_num = ["<?php echo join("\", \"", $_SESSION['col_num']); ?>"];
+          $("#select").append($("<option></option>").text("請選擇Y軸").attr('disabled','disabled'));
+          for(var i=0;i<col_num.length;i++)
+          {          
+            $("#select").append($("<option></option>").attr("value", col_num[i]).text(col_num[i]));
+          } 
+        };
 
-        if ($("#cage input").is(":checked")) {
-            cage();
-        }
-        if ($("#num input").is(":checked")) {
-            num();
-        }
-
-        $("#cage input").click(function(){
-          cage();
-        })
-        $("#num input").click(function(){
-         num();
-        })
+      $('input[name="colname[]"]').click(function(){
+        $('#select').hide();
+        $("#select option").remove();
+        $('#join').prop('checked', false);
+        option();
       });
-        
+      $('#select').hide();
+    
+      $("#join").change(function() {
+      if(this.checked) {
+        $('#select').show();
+            $('#select option').each(function(i) {     
+              if($('input:radio:checked[name="colname[]"]').val()==this.value)
+                $(this).attr('disabled','disabled');
+              });     
+       }
+     
+     
+      });
+
+      
 
         </script>
   </body>
