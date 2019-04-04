@@ -14,18 +14,21 @@ file=params[0]
 var=params[1]
 method=params[2]
 ycol=params[3]
+vp=params[4]
+vp=vp.split(',')
+count=params[5]
+
 path=r'./upload/'+file
 im_path=r'./download/'+file
 df=pd.read_csv(path,engine='python')
 im_df=pd.read_csv(im_path,engine='python')
 file=file.split('.',1)
-
 def boxplot(method,df,var):  
     plt.figure(figsize = (5,10))
-    sns.boxplot(y=df[var].dropna(),width=.2)
-    plt.title(method)
-    plt.savefig('./imputation_photo/'+file[0]+'box_'+method+'.png',bbox_inches='tight',facecolor="w" )
-def factorplot(method,df,var):
+    g=sns.boxplot(y=df[var].dropna(),width=.2)
+    plt.title(method) 
+    plt.savefig('./imputation_photo/'+file[0]+'/'+count+var+'_'+method+'_box.png',bbox_inches='tight',facecolor="w" )
+def barplot(method,df,var):
     g=sns.factorplot(var,data=df,aspect=2,kind="count",color="steelblue")
     g.set_xticklabels(step=10)
     plt.title(method)
@@ -34,13 +37,13 @@ def factorplot(method,df,var):
         if(p.get_height()==df[var].value_counts().max()):  
             ax.text(p.get_x() + p.get_width()/2., p.get_height(), '%d' % int(p.get_height()), 
                     fontsize=12, color='red', ha='center', va='bottom')
-    plt.savefig('./imputation_photo/'+file[0]+'factor_'+method+'.png',bbox_inches='tight',facecolor="w" )
+        plt.savefig('./imputation_photo/'+file[0]+'/'+count+var+'_'+method+'_factor.png',bbox_inches='tight',facecolor="w" )
 def Og_jointplot(method,df,var,y_col):
     graph=sns.jointplot(var, y_col, data=df, kind="reg",color="b")
     plt.subplots_adjust(top=0.9)
     graph.fig.suptitle(method)
     graph.set_axis_labels(var, y_col, fontsize=16)
-    plt.savefig('./imputation_photo/'+file[0]+'joint_'+method+'.png',bbox_inches='tight',facecolor="w" )
+    plt.savefig('./imputation_photo/'+file[0]+'/'+count+var+'_'+method+'_joint.png',bbox_inches='tight',facecolor="w" )
 def jointplot(method,df,im_df,var,y_col):
     
     list = ['b', 'g', 'r', 'c', 'm', 'y', 'k'] 
@@ -64,16 +67,26 @@ def jointplot(method,df,im_df,var,y_col):
     plt.subplots_adjust(top=0.9)
     graph_Mean.fig.suptitle(method)
     graph_Mean.set_axis_labels(var, y_col, fontsize=16)
-    plt.savefig('./imputation_photo/'+file[0]+'joint_'+method+'.png',bbox_inches='tight',facecolor="w" )
+    plt.savefig('./imputation_photo/'+file[0]+'/'+count+var+'_'+method+'_joint.png',bbox_inches='tight',facecolor="w" )
 
-boxplot("",df,var)
-boxplot(method,im_df,var)
+for x in vp:
+    if(x=='bar'):
+        barplot("First",df,var)
+        barplot(method,im_df,var)
+    elif(x=='box'):
+        boxplot("First",df,var)
+        boxplot(method,im_df,var)
+    elif(x=='join'):
+        Og_jointplot("First",df,var,ycol)
+        jointplot(method,df,im_df,var,ycol)
+    else:
+        break;
 
-factorplot("",df,var)
-factorplot(method,im_df,var)
 
-Og_jointplot("",df,var,ycol)
-jointplot(method,df,im_df,var,ycol)
+
+
+
+
 
 # plt.figure(figsize = (5,10))
 # g=sns.boxplot(y=df[thead].dropna(),width=.2)

@@ -32,6 +32,7 @@
     $_SESSION['col_cage'] = array_values($_SESSION['col_cage']); 
     $_SESSION['method']="";
     $_SESSION['col']="";
+    $_SESSION['count']="";
     // unset($_SESSION['method']);
     // unset($_SESSION['col']); 
     header("Location: http://localhost/Missingdata/mechanisms.php");   

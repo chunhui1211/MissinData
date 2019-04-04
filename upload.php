@@ -19,27 +19,14 @@
         
         if($type=="application/vnd.ms-excel" ||$type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         {
-            // $baseUrl='http://localhost/Missingdata/data.php?';
-            // $queries=array(
-            //     'name'=>$name,
-            //     'new_name'=>$new_name,
-            //     'type'=>$type,
-            //     'size'=>$size                
-            // );
-            // $url=http_build_query($queries);
-
-            move_uploaded_file($tmp_name,"upload/".$new_name); 
-            // $params = $new_name; //傳遞給python指令碼的入口引數  
-            // $pathdata="python missingfile.py "; //需要注意的是：末尾要加一個空格
-            // $pathphoto="python beforemissingno.py ";
-            // passthru($pathdata.$params);//等同於命令python python.py，並接收列印出來的資訊 
-            // passthru($pathphoto.$params);
-            
+            move_uploaded_file($tmp_name,"upload/".$new_name);       
             session_start();       
             $_SESSION['name']=$name;
             $_SESSION['type']=$type;
             $_SESSION['size']= $size;   
             $_SESSION['new_name']=$new_name; 
+            $new_name=substr($new_name,0,-4);
+            mkdir("./imputation_photo/".$new_name);
             header("Location: http://localhost/Missingdata/data.php");
             exit;            
                   

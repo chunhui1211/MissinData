@@ -47,6 +47,8 @@
     session_start();
     $new_name=$_SESSION['new_name'];
     echo "<p class='lead'>檔案名稱:".$new_name."</p>";
+    echo "<p class='lead'>預覽次數:".$_SESSION['count']."</p>";
+    echo "<p class='lead'>填補欄位:".$_SESSION['col']."</p>";
     $method=$_SESSION['method'];
     if ($method=="del") {
         $method="列表刪除";
@@ -63,9 +65,7 @@
     } elseif ($method=="logistic") {
         $method="邏輯迴歸法";
     }
-    echo "<p class='lead'>方法:".$method."</p>";
-    $col=$_SESSION['col'];
-    echo "<p class='lead'>欄位:".$col."</p>";
+    echo "<p class='lead'>填補方法:".$method."</p>";
     ?>
         <div class="row">
             <div class="col-1">
@@ -101,22 +101,31 @@
             <?php
             function displayimg($type)
             {
-                $handle = opendir('./imputation_photo/'); //當前目錄
+                $new_name=$_SESSION['new_name'];
+                $new_name=substr($new_name,0,-4);
+                $handle = opendir('./imputation_photo/'.$new_name.'/'); 
                 while (false !== ($file = readdir($handle))) 
-                { 
+                {                   
                     list($filesname, $kzm)=explode(".", $file);
                     if ($kzm=="png" and strpos($filesname, $type)!==false) 
-                    {  
-                        if (!is_dir('./'.$file)) 
-                        { 
-                            $array[]=$file;
+                    {   
+                        if (!is_dir('./'.$file) and 
+                        substr($file,0,strlen($_SESSION['count'])==$_SESSION['count']) and 
+                        substr($file,1,strlen($_SESSION['col']))==$_SESSION['col']) 
+                        {
+                            $array[]=$file;                          
                         }
+                    }  
+                               
+                }        
+                if(isset($array))
+                {
+                    for ($j=0;$j<count($array);$j++)
+                    {
+                        echo "<img class=\"$type\" src=\"./imputation_photo/$new_name/$array[$j]\">";
                     }
                 }
-                for ($j=0;$j<count($array);$j++)
-                {
-                echo "<img class=\"$type\" src=\"./imputation_photo/$array[$j]\">";
-                }
+                
             }     
             ?>
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">

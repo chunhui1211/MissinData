@@ -27,8 +27,7 @@
         <span>檔案名稱:</span>
         <input type="file" name="file" id="file">
         <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal">上傳檔案</button>
-
-        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
