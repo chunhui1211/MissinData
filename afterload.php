@@ -110,7 +110,7 @@
                     if ($kzm=="png" and strpos($filesname, $type)!==false) 
                     {   
                         if (!is_dir('./'.$file) and 
-                        substr($file,0,strlen($_SESSION['count'])==$_SESSION['count']) and 
+                        substr($file,0,1)==$_SESSION['count'] and 
                         substr($file,1,strlen($_SESSION['col']))==$_SESSION['col']) 
                         {
                             $array[]=$file;                          

@@ -31,15 +31,15 @@
         $vp=$vp.$key.',';
     }  
 
-    // trim($colname);
-    // $sum=$new_name.";".$colname.";".$method.";".$ycol.";"; 
-    // $sumplot=$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";"; 
-    // $varpython="python imputation.py ";
-    // $var=$varpython.$sum; 
-    // echo shell_exec($var);    
-    // $varpython_plot="python plot.py ";
-    // $plot=$varpython_plot.$sumplot;  
-    // echo shell_exec($plot);
+    trim($colname);
+    $sum=$new_name.";".$colname.";".$method.";".$ycol.";"; 
+    $sumplot=$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";"; 
+    $varpython="python imputation.py ";
+    $var=$varpython.$sum; 
+    echo shell_exec($var);    
+    $varpython_plot="python plot.py ";
+    $plot=$varpython_plot.$sumplot;  
+    echo shell_exec($plot);
     
     header("Location: http://localhost/Missingdata/afterload.php");   
     exit;
