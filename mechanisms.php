@@ -77,7 +77,7 @@
         </div>
         <div id="num">
         <?php
-        if(isset($_POST['cage']))
+        if(isset($_POST['num']))
         {
           $_SESSION['col_num']="";
           $num=array();
@@ -95,10 +95,9 @@
           for ($i = 0 ; $i < count($_SESSION['col_num']) ; $i++)
           {
             echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
-            echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]} (S)</label><br/>";
+            echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]} (N)</label><br/>";
           }
         }
-         
         ?>
         </div>
         <hr>
@@ -112,21 +111,21 @@
         <hr> -->
         <h4><strong>填補方法</strong></h4>
         <strong>刪除法</strong>
-        <input type="radio" name="method" value="del" id="del" />
+        <input type="checkbox" name="method[del]" value="del" id="del" class="method"/>
         <label for="del">列表刪除</label>
-        <input type="radio" name="method" value="delrow" id="delrow" />
+        <input type="checkbox" name="method[delrow]" value="delrow" id="delrow" class="method"/>
         <label for="delrow">欄位刪除</label>
         <br/><br/>
         <strong>補值法</strong>    
-        <input type="radio" name="method" value="mean" id="mean" />
+        <input type="checkbox" name="method[mean]" value="mean" id="mean" class="method"/>
         <label for="mean">平均值</label>
-        <input type="radio" name="method" value="mode" id="mode" />
+        <input type="checkbox" name="method[mode]" value="mode" id="mode" class="method"/>
         <label for="mode">眾值</label>
-        <input type="radio" name="method" value="knn" id="knn" />
+        <input type="checkbox" name="method[knn]" value="knn" id="knn" class="method"/>
         <label for="knn">最近鄰居法</label>
-        <input type="radio" name="method" value="linear" id="linear" />
+        <input type="checkbox" name="method[linear]" value="linear" id="linear" class="method"/>
         <label for="linear">線性迴歸法</label>
-        <input type="radio" name="method" value="logistic" id="logistic" />
+        <input type="checkbox" name="method[logistic]" value="logistic" id="logistic" class="method"/>
         <label for="logistic" >邏輯迴歸法</label>
         <hr>
         <h4><strong>視覺化圖表</strong></h4>
@@ -159,19 +158,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script >
       $(document).ready(function() {
-      var method = '<?php echo $_SESSION['method']; ?>';
+
       var col = '<?php echo $_SESSION['col']; ?>';  
-      if(method!="")
-      {
-        $('#'+method).attr("checked",true);
-      }
+      // if(method!="")
+      // {
+      //   $('#'+method).attr("checked",true);
+      // }
       if(col!="")
       {
         $('#'+col).attr("checked",true);
       }
       $('button[type="submit"]').click(function(){
         var colname=$('input[name="colname[]"]:checked').length;
-        var method=$('input[name="method"]:checked').length;
+        var method=$('input[class="method"]:checked').length;
         var vp=$('input[class="vp"]:checked').length;
         if(colname==0)
         {
@@ -210,7 +209,7 @@
       {
         $('#select').hide();
         $("#select option").remove();
-        $('#join').prop('checked', false);
+        $('#join').prop('checked', false);      
         option();
         $('#bar').attr("disabled", false);
         $('#box').attr("disabled", false);
@@ -229,7 +228,6 @@
                 });     
         }     
       });
-
     });
 
     var cage=function(){
@@ -247,6 +245,7 @@
         $('label[for=linear],input#linear').show();
     };
     var option=function(){
+      
       var col_num = ["<?php echo join("\", \"", $_SESSION['num']); ?>"];
       $("#select").append($("<option></option>").text("請選擇Y軸").attr('disabled','disabled'));
       for(var i=0;i<col_num.length;i++)

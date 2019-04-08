@@ -4,11 +4,7 @@
     $count=$_SESSION['count'];
     $count=$count+1;
     $_SESSION['count']=$count;
-    if ($_POST['method']!=null)
-    {
-        $method=$_POST['method']; 
-        $_SESSION['method']=$method;
-    }
+    $ycol="";
 
     if ($_POST['colname']!=null)
     {
@@ -24,23 +20,31 @@
         {
             $ycol=$_POST['ycol']; 
         }
-    }
 
+    }
+    $method="";
+    $methods=array();
+    foreach ($_POST['method'] as $key => $value) 
+    {
+        $method=$method.$key.',';
+        array_push($methods,$key);        
+    }  
+    $method=substr($method,0,-1);
+    $_SESSION['method']=$methods;
+    $vp="";
     foreach ($_POST['vp'] as $key => $value) 
     {
         $vp=$vp.$key.',';
     }  
+    $vp=substr($vp,0,-1);
 
     trim($colname);
-    $sum=$new_name.";".$colname.";".$method.";".$ycol.";"; 
-    $sumplot=$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";"; 
-    $varpython="python imputation.py ";
-    $var=$varpython.$sum; 
-    echo shell_exec($var);    
-    $varpython_plot="python plot.py ";
-    $plot=$varpython_plot.$sumplot;  
-    echo shell_exec($plot);
+
+    $sum="python imputation.py ".$new_name.";".$colname.";".$method.";".$count.";";    
+    echo shell_exec($sum);    
     
+    $sumplot="python plot.py ".$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";";   
+    echo shell_exec($sumplot);
     header("Location: http://localhost/Missingdata/afterload.php");   
     exit;
 ?>

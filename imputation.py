@@ -1,35 +1,38 @@
-#%%
 import sys 
 import pandas as pd
 import numpy as np
 from pathlib import Path
 from sklearn import neighbors
 from sklearn.linear_model import LinearRegression,LogisticRegression
-# params='titanic-190223015019.csv;Age;mean'
+
 params=sys.argv[1] 
 params=params.split(';')
 file=params[0]
-thead=params[1]
-method=params[2]
+var=params[1]
+methods=params[2]
+count=params[3]
+methods=methods.split(',')
 path=r'./upload/'+file
-df=pd.read_csv(path,engine='python')
 
-
-def drop_var(df,var):#行
+def drop_var(method):#行
+    df=pd.read_csv(path)
     df = df.drop(var,axis=1)
-    return df
-def del_var(df,var):#列
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def del_var(method):#列
+    df=pd.read_csv(path)
     df =df.dropna(subset=[var])
-    return df
-def replace_mean(df,var):
-    df[var] =round(df[var].fillna(df[var].mean()))
-    
-    return df
-def replace_custom(df,var,value):
-    df[var] = df[var].fillna(value)
-    return df
-def replace_knn(train_df,var):
-    # train_df = pd.read_csv(path)  
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def replace_mean(method):
+    df=pd.read_csv(path,engine='python')
+    df[var]=round(df[var].fillna(df[var].mean()))
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def replace_custom(method):
+    df=pd.read_csv(path)
+    popular = df[var].value_counts().idxmax()
+    df[var] = df[var].fillna(popular)
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def replace_knn(method):
+    train_df=pd.read_csv(path)
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         train_df=train_df.drop([i],axis=1)
@@ -50,13 +53,13 @@ def replace_knn(train_df,var):
     data_null_len=len(new_df[new_df[var].isnull()])
 
     for i in range(data_null_len):
-        xx=df[df[var].isnull()].index[i]
+        xx=train_df[train_df[var].isnull()].index[i]
         Xnew=np.array([data.iloc[xx].tolist()])
         ynew=trained_model.predict(Xnew)
-        new_df[var].loc[xx]=ynew[0]       
-    return new_df
-def replace_linear(train_df,var):
-    # train_df = pd.read_csv(path)  
+        new_df[var].loc[xx]=ynew[0]    
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def replace_linear(method):
+    train_df = pd.read_csv(path)  
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         train_df=train_df.drop([i],axis=1)
@@ -77,8 +80,9 @@ def replace_linear(train_df,var):
         xx=train_df[train_df[var].isnull()].index[i]
         new_df[var].loc[xx]=lm.predict(test_x)[i]
 
-    return new_df
-def replace_logistic(train_df,var):
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def replace_logistic(method):
+    train_df = pd.read_csv(path) 
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         if(i==var):
@@ -102,34 +106,49 @@ def replace_logistic(train_df,var):
         xx=train_df[train_df[var].isnull()].index[i] 
         new_df[var].loc[xx]=lg.predict(train_x)[i]
         
-    return new_df
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 
-for column in df: 
-    if(df[column].name==thead):
-        if (method=='mean'):
-            df = replace_mean(df,column)        
-        elif (method=='mode'):           
-            popular = df[column].value_counts().idxmax()
-            df = replace_custom(df,column,popular)
+for method in methods:
+    if (method=='mean'):
+        replace_mean(method) 
 
-        elif (method=='del'):
-            df=del_var(df,column)
+    elif (method=='mode'):         
+        replace_custom(method)
 
-        elif (method=='delrow'):
-            df=drop_var(df,column)
+    elif (method=='del'):
+        del_var(method)
 
-        elif (method=='knn'):
-            df=replace_knn(df,column)
+    elif (method=='delrow'):
+        drop_var(method)
 
-        elif (method=='linear'):
-            df=replace_linear(df,column)
+    elif (method=='knn'):
+        replace_knn(method)
 
-        elif (method=='logistic'):
-            df=replace_logistic(df,column)
-        else:
-            df=df
-    else:
-        df=df;
-        # continue;
+    elif (method=='linear'):
+        replace_linear(method)
 
-df.to_csv('./download/'+file,index=False)
+    elif (method=='logistic'):
+        replace_logistic(method)
+
+
+# for column in df: 
+#     if(df[column].name==thead):
+#         if (method=='mean'):
+#             df = replace_mean(df,column)        
+#         elif (method=='mode'):           
+#             popular = df[column].value_counts().idxmax()
+#             df = replace_custom(df,column,popular)
+#         elif (method=='del'):
+#             df=del_var(df,column)
+#         elif (method=='delrow'):
+#             df=drop_var(df,column)
+#         elif (method=='knn'):
+#             df=replace_knn(df,column)
+#         elif (method=='linear'):
+#             df=replace_linear(df,column)
+#         elif (method=='logistic'):
+#             df=replace_logistic(df,column)
+#     else:
+#         break;
+
+# df.to_csv('./download/'+file,index=False)
