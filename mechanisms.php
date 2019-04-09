@@ -25,19 +25,34 @@
             $new_name=$_SESSION['new_name'];
     
           ?> 
-        <div class="col-3">
-
-        <button type="button" class="btn btn-warning"  onclick="location.href='download.php?file=<?=$new_name?>'">檔案匯出</button>
+        <div class="col-4">
+        <button type="button" class="btn btn-warning"  onclick="location.href='downloadfile.php?file=<?=$new_name?>'">檔案匯出</button>
         <br/><br/>
         <?php
 
         if ($_SESSION['list']!=null) {
-            $listcol=$_SESSION['list'];
-            $cutchar = explode(";", $listcol);
-
-            foreach ($cutchar as $key => $value) {
-                $key=$key+1;
-                echo '步驟'.$key.'：=>'.$value.'<br />';
+          for($i=0;$i<count($_SESSION['list']);$i++)
+          {
+            $value=enmethodtoch($_SESSION['list'][$i][1]);
+            echo '步驟'.($i+1).'=>欄位:'.$_SESSION['list'][$i][0].',方法:'.$value."<br/>";
+          }
+        }
+        function enmethodtoch($method)
+        {
+            if ($method=="del") {
+                return "列表刪除";
+            } elseif ($method=="delrow") {
+                return "欄位刪除";
+            } elseif ($method=="mean") {
+                return "平均值";
+            } elseif ($method=="mode") {
+                return "眾值";
+            } elseif ($method=="knn") {
+                return "最近鄰居法";
+            } elseif ($method=="linear") {
+                return "線性迴歸法";
+            } elseif ($method=="logistic") {
+                return "邏輯迴歸法";
             }
         }
         ?>       
@@ -51,7 +66,11 @@
         <small>S:文字 N:數字</small>
         <div id="cage">
         <?php   
-        // print_r()
+        if($_SESSION["col_cage"]==null && $_SESSION["col_num"]==null)
+        {
+          header("Location: http://localhost/Missingdata/download.php");   
+          exit;
+        }
         if($_SESSION["col_cage"]!=null)
         {
           for ($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++)

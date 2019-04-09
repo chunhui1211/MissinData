@@ -36,13 +36,12 @@ def barplot(method,im_df,var):
     g=sns.factorplot(var,data=im_df,aspect=2,kind="count",color="steelblue")
     g.set_xticklabels(step=10)
     plt.title(method)
-    ax = plt.gca()
-      
-    for p in ax.patches:
-        if(p.get_height()==im_df[var].value_counts().max()):  
-            ax.text(p.get_x() + p.get_width()/2., p.get_height(), '%d' % int(p.get_height()), 
-                    fontsize=12, color='red', ha='center', va='bottom')
-        plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_factor.png',bbox_inches='tight',facecolor="w" )
+    # ax = plt.gca()     
+    # for p in ax.patches:
+    #     if(p.get_height()==im_df[var].value_counts().max()):  
+    #         ax.text(p.get_x() + p.get_width()/2., p.get_height(), '%d' % int(p.get_height()), 
+    #                 fontsize=12, color='red', ha='center', va='bottom')
+    plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_factor.png',bbox_inches='tight',facecolor="w" )
 def Og_jointplot(method,df,var,y_col):
     graph=sns.jointplot(var, y_col, data=df, kind="reg",color="b")
     plt.subplots_adjust(top=0.9)

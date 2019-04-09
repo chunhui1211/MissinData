@@ -7,12 +7,18 @@
     {
         $method=$_POST['option'];
     }
-
-    $_SESSION['list']=$_SESSION['list'].$colname.",".$method.";";
-
+    array_push($_SESSION['list'], array ($colname,$method));
     $var="python check_imputation.py ".$new_name.";".$colname.";".$method.";";
     echo shell_exec($var);
    
+    foreach($_SESSION['col_cage'] as $key => $value)
+    {
+        if($_SESSION['col']==$value)
+        {
+            unset($_SESSION['col_cage'][$key]);
+        }
+    }
+    $_SESSION['col_cage'] = array_values($_SESSION['col_cage']); 
 
     foreach($_SESSION['col_num'] as $key => $value)
     {
@@ -22,14 +28,7 @@
         }
     }
     $_SESSION['col_num'] = array_values($_SESSION['col_num']);
-    foreach($_SESSION['col_cage'] as $key => $value)
-    {
-        if($_SESSION['col']==$value)
-        {
-            unset($_SESSION['col_cage'][$key]);
-        }
-    }
-    $_SESSION['col_cage'] = array_values($_SESSION['col_cage']); 
+
     $_SESSION['method']="";
     $_SESSION['col']="";
     $_SESSION['count']="";

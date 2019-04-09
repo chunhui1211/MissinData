@@ -95,8 +95,8 @@ def replace_logistic(train_df,var):
 
 if (method=='mean'):
     df = replace_mean(df,thead)
-elif (method=='mode'):           
-    popular = df[column].value_counts().idxmax()
+elif (method=='mode'):         
+    popular = df[thead].value_counts().idxmax()
     df = replace_custom(df,thead,popular)
 elif (method=='del'):
     df=del_var(df,thead)
