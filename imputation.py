@@ -23,7 +23,7 @@ def del_var(method):#列
     df =df.dropna(subset=[var])
     df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 def replace_mean(method):
-    df=pd.read_csv(path,engine='python')
+    df=pd.read_csv(path)
     df[var]=round(df[var].fillna(df[var].mean()))
     df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 def replace_custom(method):
@@ -129,26 +129,3 @@ for method in methods:
 
     elif (method=='logistic'):
         replace_logistic(method)
-
-
-# for column in df: 
-#     if(df[column].name==thead):
-#         if (method=='mean'):
-#             df = replace_mean(df,column)        
-#         elif (method=='mode'):           
-#             popular = df[column].value_counts().idxmax()
-#             df = replace_custom(df,column,popular)
-#         elif (method=='del'):
-#             df=del_var(df,column)
-#         elif (method=='delrow'):
-#             df=drop_var(df,column)
-#         elif (method=='knn'):
-#             df=replace_knn(df,column)
-#         elif (method=='linear'):
-#             df=replace_linear(df,column)
-#         elif (method=='logistic'):
-#             df=replace_logistic(df,column)
-#     else:
-#         break;
-
-# df.to_csv('./download/'+file,index=False)

@@ -1,0 +1,27 @@
+td 
+{
+    border: 1px solid #ddd;
+}
+.msno 
+{
+    width: 450px;
+    height: 300px;
+}
+.factor 
+{
+    width: 600px;
+    height: 300px;
+    margin: 20px 10px;
+}
+.box 
+{
+    width: 400px;
+    height: 500px;
+    margin: 20px 10px;
+}
+.joint 
+{
+    width: 500px;
+    height: 500px;
+    margin: 20px 10px;
+}
