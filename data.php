@@ -98,9 +98,6 @@
           }                                
         } 
         $_SESSION['colname']=$arrayhead;
-        // echo "<pre>";
-        // print_r($arrayhead); 
-        // echo "</pre>";
 
         echo '<table>';      
         for($row=1;$row<=$worksheet->getHighestRow();$row++)

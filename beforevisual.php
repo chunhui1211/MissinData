@@ -55,8 +55,8 @@
                 </div>
         </div>
         <div class="col-1">
-        <form action="missingcol.php" method="post" enctype="multipart/form-data">
-        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal">設定填補</button>
+        <!-- <form action="missingcol.php" method="post" enctype="multipart/form-data"> -->
+        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/filtercol.php'">設定填補</button>
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -67,7 +67,7 @@
               </div>
             </div>
           </div>
-        </form>  
+        <!-- </form>   -->
         </div>
         <div class="col-10">         
         </div>

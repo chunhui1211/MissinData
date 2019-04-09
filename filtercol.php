@@ -18,7 +18,7 @@
     </div>
     </div>
     <div class="container"> 
-    <form id="form1" action="mechanisms.php" method="post" enctype="multipart/form-data"> 
+    <form id="form1" action="missingcol.php" method="post" enctype="multipart/form-data"> 
     <h1>請選擇欲填補的欄位</h1> 
     <input TYPE="checkbox" id="chkAll" onclick="CheckedAll()"/>
     <label for="chkAll">全選</label>
@@ -26,21 +26,23 @@
     <?php 
     session_start();
     $new_name=$_SESSION['new_name'];
-
-    for ($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++) {
-        echo "<input type='checkbox' name='cage[]' id='{$_SESSION['col_cage'][$i]}' value='{$_SESSION['col_cage'][$i]}'>";
-        echo "<label for='{$_SESSION['col_cage'][$i]}'>{$_SESSION['col_cage'][$i]} (S)</label>";
+    for ($i = 0 ; $i < count($_SESSION['colname']) ; $i++) {
+        echo "<input type='checkbox' name='col[]' id='{$_SESSION['colname'][$i]}' value='{$_SESSION['colname'][$i]}'>";
+        echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
         echo "<br/>";
     }
-
-    for ($i = 0 ; $i < count($_SESSION['col_num']) ; $i++) {
-        echo "<input type='checkbox' name='num[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
-        echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]} (N)</label>";
-        echo "<br/>";
-    }
-
     ?>
-    <button type="submit" class="btn">送出</button>
+    <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" >送出</button>
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
+                <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                </div>
+              </div>
+            </div>
+          </div>
     </form>   
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

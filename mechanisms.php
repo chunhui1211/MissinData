@@ -30,15 +30,16 @@
         <button type="button" class="btn btn-warning"  onclick="location.href='download.php?file=<?=$new_name?>'">檔案匯出</button>
         <br/><br/>
         <?php
-            if ($_SESSION['list']!=null) {
-                $listcol=$_SESSION['list'];
-                $cutchar = explode(";", $listcol);
 
-                foreach ($cutchar as $key => $value) {
-                    $key=$key+1;
-                    echo '步驟'.$key.'：=>'.$value.'<br />';
-                }
+        if ($_SESSION['list']!=null) {
+            $listcol=$_SESSION['list'];
+            $cutchar = explode(";", $listcol);
+
+            foreach ($cutchar as $key => $value) {
+                $key=$key+1;
+                echo '步驟'.$key.'：=>'.$value.'<br />';
             }
+        }
         ?>       
         </div>
         <div class="col">    
@@ -49,21 +50,9 @@
         <h4><strong>遺漏欄位</strong></h4>
         <small>S:文字 N:數字</small>
         <div id="cage">
-        <?php    
-        if(isset($_POST['cage']))
-        {
-          $_SESSION['col_cage']="";
-          $cage=array();
-          $col_cage = $_POST['cage'];
-          for ($i = 0 ; $i < count($_POST['cage']) ; $i++)
-          {
-            echo "<input type='radio' name='colname[]' id='{$col_cage[$i]}' value='{$col_cage[$i]}'>";
-            echo "<label for='{$col_cage[$i]}'>{$col_cage[$i]} (S)</label><br/>";
-            array_push($cage,$col_cage[$i]);
-          }
-          $_SESSION['col_cage']=$cage;
-        }
-        else
+        <?php   
+        // print_r()
+        if($_SESSION["col_cage"]!=null)
         {
           for ($i = 0 ; $i < count($_SESSION['col_cage']) ; $i++)
           {
@@ -71,33 +60,19 @@
             echo "<label for='{$_SESSION['col_cage'][$i]}'>{$_SESSION['col_cage'][$i]} (S)</label><br/>";
           }
         }
-          
-             
+                        
         ?>
         </div>
         <div id="num">
         <?php
-        if(isset($_POST['num']))
-        {
-          $_SESSION['col_num']="";
-          $num=array();
-          $col_num = $_POST['num'];
-          for ($i = 0 ; $i < count($col_num) ; $i++) 
-          {
-              echo "<input type='radio' name='colname[]' id='{$col_num[$i]}' value='{$col_num[$i]}'>";
-              echo "<label for='{$col_num[$i]}'>{$col_num[$i]} (N)</label><br/>";
-              array_push($num,$col_num[$i]);
-          }    
-          $_SESSION['col_num']=$num; 
-        }
-        else
+        if($_SESSION["col_num"]!=null)
         {
           for ($i = 0 ; $i < count($_SESSION['col_num']) ; $i++)
           {
             echo "<input type='radio' name='colname[]' id='{$_SESSION['col_num'][$i]}' value='{$_SESSION['col_num'][$i]}'>";
             echo "<label for='{$_SESSION['col_num'][$i]}'>{$_SESSION['col_num'][$i]} (N)</label><br/>";
-          }
-        }
+          } 
+        }         
         ?>
         </div>
         <hr>
@@ -156,18 +131,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script >
-      $(document).ready(function() {
-
-      var col = '<?php echo $_SESSION['col']; ?>';  
-      // if(method!="")
-      // {
-      //   $('#'+method).attr("checked",true);
-      // }
-      if(col!="")
-      {
-        $('#'+col).attr("checked",true);
-      }
+    <script>
+    $(document).ready(function() {
       $('button[type="submit"]').click(function(){
         var colname=$('input[name="colname[]"]:checked').length;
         var method=$('input[class="method"]:checked').length;
@@ -205,8 +170,8 @@
       $('#num input').click(function(){
         num();
       })
-      if($('input[name="colname[]"]').prop('checked', true))
-      {
+
+      $('input[name="colname[]"]').change(function(){
         $('#select').hide();
         $("#select option").remove();
         $('#join').prop('checked', false);      
@@ -214,46 +179,46 @@
         $('#bar').attr("disabled", false);
         $('#box').attr("disabled", false);
         $('#join').attr("disabled", false);
-      }
-
+      })
+      
       $('#select').hide();
     
       $("#join").change(function() {
         if(this.checked) 
         {
           $('#select').show();
-              $('#select option').each(function(i) {     
+              $('#select option').each(function() {     
                 if($('input:radio:checked[name="colname[]"]').val()==this.value)
                   $(this).attr('disabled','disabled');
-                });     
+                })    
         }     
-      });
-    });
+      })
 
-    var cage=function(){
-      $('label[for=mean],input#mean').hide();
-      $('label[for=knn],input#knn').hide();
-      $('label[for=linear],input#linear').hide();
-      $('label[for=mode],input#mode').show();
-      $('label[for=logistic],input#logistic').show();
-    };
-    var num=function(){
-      $('label[for=logistic],input#logistic').hide();
+      var cage=function(){
+        $('label[for=mean],input#mean').hide();
+        $('label[for=knn],input#knn').hide();
+        $('label[for=linear],input#linear').hide();
+        $('label[for=mode],input#mode').show();
+        $('label[for=logistic],input#logistic').show();
+      };
+      var num=function(){
+        $('label[for=logistic],input#logistic').hide();
         $('label[for=mean],input#mean').show();
         $('label[for=mode],input#mode').show();
         $('label[for=knn],input#knn').show();
         $('label[for=linear],input#linear').show();
-    };
-    var option=function(){
-      
-      var col_num = ["<?php echo join("\", \"", $_SESSION['num']); ?>"];
-      $("#select").append($("<option></option>").text("請選擇Y軸").attr('disabled','disabled'));
-      for(var i=0;i<col_num.length;i++)
-      {          
-        $("#select").append($("<option></option>").attr("value", col_num[i]).text(col_num[i]));
-      } 
-    };
-    </script>
+      };
+      var option=function(){            
+        var col_num = <?php echo json_encode($_SESSION['num']); ?>;
+        $("#select").append($("<option></option>").text("請選擇Y軸").attr('disabled','disabled'));
+        for(var i=0;i<col_num.length;i++)
+        {          
+          $("#select").append($("<option></option>").attr("value", col_num[i]).text(col_num[i]));
+        }      
+      };
+
+    });
+  </script>
   </body>
 </html>
          
