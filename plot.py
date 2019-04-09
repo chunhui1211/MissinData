@@ -10,6 +10,8 @@ import random
 
 params=sys.argv[1] 
 params=params.split(';')
+params=params[:-1]
+
 file=params[0]
 var=params[1]
 
@@ -27,8 +29,6 @@ path=r'./upload/'+file
 df=pd.read_csv(path)
 
 name=file.split('.',1) 
-
-
 
 def boxplot(method,im_df,var):  
     plt.figure(figsize = (5,10))
@@ -52,7 +52,6 @@ def Og_jointplot(method,df,var,y_col):
     graph.set_axis_labels(var, y_col, fontsize=16)
     plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_joint.png',bbox_inches='tight',facecolor="w" )
 def jointplot(method,df,im_df,var,y_col):
-    
     list = ['b', 'g', 'r', 'c', 'm', 'y', 'k'] 
     randomlist = random.sample(list, 1) 
     a=[]
@@ -63,30 +62,32 @@ def jointplot(method,df,im_df,var,y_col):
             b.append(df[y_col].iloc[i])
     n=[]
     s=[]
+    
     for i in range(len(df)):
         if df[var].iloc[i]!=im_df[var].iloc[i]:
             n.append(im_df[var].iloc[i])
             s.append(im_df[y_col].iloc[i])
-    graph_Mean=sns.jointplot(n,s, data=im_df, kind="reg",color=randomlist[0])
-    graph_Mean.x=a
-    graph_Mean.y=b
-    graph_Mean.plot_joint(plt.scatter,marker='o',alpha=0.2)
+    graph=sns.jointplot(n,s, data=im_df, kind="reg",color=randomlist[0])
+    graph.x=a
+    graph.y=b
+    graph.plot_joint(plt.scatter,marker='o',alpha=0.2)
     plt.subplots_adjust(top=0.9)
-    graph_Mean.fig.suptitle(method)
-    graph_Mean.set_axis_labels(var, y_col, fontsize=16)
+    graph.fig.suptitle(method)
+    graph.set_axis_labels(var, y_col, fontsize=16)
+    
     plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_joint.png',bbox_inches='tight',facecolor="w" )
 
 for method in methods:
     im_path=r'./download/'+count+var+method+'_'+file
     im_df=pd.read_csv(im_path)
-    for x in vp:
+    for x in vp:      
         if(x=='bar'):  
             barplot("First",df,var)
             barplot(method,im_df,var)
         elif(x=='box'):
             boxplot("First",df,var)
             boxplot(method,im_df,var)
-        elif(x=='join'):
+        elif(x=='joint'):
             Og_jointplot("First",df,var,ycol)
             jointplot(method,df,im_df,var,ycol)
 

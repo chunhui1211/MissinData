@@ -45,6 +45,7 @@
     
     $sumplot="python plot.py ".$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";";   
     echo shell_exec($sumplot);
+    
     header("Location: http://localhost/Missingdata/afterload.php");   
     exit;
 ?>

@@ -127,8 +127,8 @@
         <label  for="bar">長條圖</label>
         <input type="checkbox"  name="vp[box]" class="vp" id="box" disabled>
         <label  for="box">盒狀圖</label>
-        <input type="checkbox"  name="vp[join]" class="vp" id="join" disabled>
-        <label  for="join">Join</label>
+        <input type="checkbox"  name="vp[joint]" class="vp" id="joint" disabled>
+        <label  for="joint">散點圖</label>
         <select id="select" name='ycol' class="custom-select" multiple></select>
         <hr>
         <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" >送出</button>
@@ -193,16 +193,16 @@
       $('input[name="colname[]"]').change(function(){
         $('#select').hide();
         $("#select option").remove();
-        $('#join').prop('checked', false);      
+        $('#joint').prop('checked', false);      
         option();
         $('#bar').attr("disabled", false);
         $('#box').attr("disabled", false);
-        $('#join').attr("disabled", false);
+        $('#joint').attr("disabled", false);
       })
       
       $('#select').hide();
     
-      $("#join").change(function() {
+      $("#joint").change(function() {
         if(this.checked) 
         {
           $('#select').show();
