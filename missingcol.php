@@ -45,6 +45,7 @@ $_SESSION['method']="";
 $_SESSION['col']="";
 $_SESSION['list']="";
 $_SESSION['count']=0;
+$_SESSION['list']=array();
 
 header("Location: http://localhost/Missingdata/mechanisms.php");   
 exit;

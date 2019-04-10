@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" />
     <link rel="stylesheet" href="styles.css" />
-  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body style="font-family:Microsoft JhengHei;">
   <div class="container-fluid"> 
@@ -27,7 +27,7 @@
         echo "<p class='lead '>檔名新名稱:".$new_name."</p>";
     ?> 
         <div class="col-1">
-        <button type="button" class="btn"  data-toggle="modal" data-target="#exampleModal">重新上傳</button>
+        <button type="button" class="btn"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-upload mr-2"></i>重新上傳</button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -51,7 +51,7 @@
         </div>
         <div class="col-1">
         <!-- <form action="missingcol.php" method="post" enctype="multipart/form-data"> -->
-        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/filtercol.php'">設定填補</button>
+        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/filtercol.php'"><i class="fas fa-sliders-h mr-2"></i>設定填補</button>
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">

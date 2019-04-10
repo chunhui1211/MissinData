@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   
   <body style="background-color: rgb(243, 243, 243);font-family:Microsoft JhengHei;">
@@ -26,10 +27,10 @@
     
           ?> 
         <div class="col-4">
-        <button type="button" class="btn btn-warning"  onclick="location.href='downloadfile.php?file=<?=$new_name?>'">檔案匯出</button>
+        <button type="button" class="btn btn-warning"  onclick="location.href='downloadfile.php?file=<?=$new_name?>'"><i class="fas fa-download mr-2"></i>檔案匯出</button>
         <br/><br/>
         <?php
-
+        
         if ($_SESSION['list']!=null) {
           for($i=0;$i<count($_SESSION['list']);$i++)
           {
@@ -131,7 +132,7 @@
         <label  for="joint">散點圖</label>
         <select id="select" name='ycol' class="custom-select" multiple></select>
         <hr>
-        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" >送出</button>
+        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>送出</button>
         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -152,6 +153,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
+      
       $('button[type="submit"]').click(function(){
         var colname=$('input[name="colname[]"]:checked').length;
         var method=$('input[class="method"]:checked').length;
