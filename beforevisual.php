@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" />   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  </head>
-  <body style="font-family:Microsoft JhengHei;">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+  <body>
   <div class="container-fluid"> 
-  <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px">
+  <div class="row rowheader">
         <div class="col">
-           <h1 style="margin:0;font-size:40px;">Missing Data</h1>
+           <h1><a href='http://localhost/Missingdata/index.php'>Missing Data</a></h1>
         </div>
     </div>
     </div>
@@ -24,7 +24,7 @@
     <?php
         session_start();
         $new_name=$_SESSION['new_name'];
-        echo "<p class='lead '>檔名新名稱:".$new_name."</p>";
+        echo "<span>檔名新名稱:".$new_name."</span>";
     ?> 
         <div class="col-1">
         <button type="button" class="btn"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-upload mr-2"></i>重新上傳</button>
@@ -50,7 +50,6 @@
                 </div>
         </div>
         <div class="col-1">
-        <!-- <form action="missingcol.php" method="post" enctype="multipart/form-data"> -->
         <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/filtercol.php'"><i class="fas fa-sliders-h mr-2"></i>設定填補</button>
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -62,36 +61,37 @@
               </div>
             </div>
           </div>
-        <!-- </form>   -->
         </div>
-        <div class="col-10">         
-        </div>
+        <div class="col-10">               
+        </div>     
     </div>
-    <div class="row mt-5">     
-        <div class="col">
+  <h1 class="text-center mt-5">資料遺漏狀況圖</h1>  
+    <div class="row">    
+        <div class="col text-center">
+            <h2>Matrix</h2>
             <?php
-            $filename="./photo/".$new_name."1.png";
-            if (file_exists($filename)) {
-                echo  "<a href=\"photo/".$new_name."1.png\" class=\"fancybox\">";
-                echo "<img class=\"msno\" src=\"./photo/".$new_name."1.png\"></a>";
+            $new_name=explode(".",$new_name);
+            if (file_exists("./missinginfo/".$new_name[0]."/matrix.png")) {
+                echo  "<a href=\"missinginfo/".$new_name[0]."/matrix.png\" class=\"fancybox\">";
+                echo "<img class=\"msno\" src=\"./missinginfo/".$new_name[0]."/matrix.png\"></a>";
             }
             ?>    
         </div>
-        <div class="col">
+        <div class="col text-center">
+            <h2>Bar Chart</h2>
             <?php
-            $filename="./photo/".$new_name."2.png";
-            if (file_exists($filename)) {
-                echo  " <a href=\"photo/".$new_name."2.png\" class=\"fancybox\">";
-                echo "<img class=\"msno\" src=\"./photo/".$new_name."2.png\"></a>";
+            if (file_exists("./missinginfo/".$new_name[0]."/bar.png")) {
+                echo  " <a href=\"missinginfo/".$new_name[0]."/bar.png\" class=\"fancybox\">";
+                echo "<img class=\"msno\" src=\"./missinginfo/".$new_name[0]."/bar.png\"></a>";
             }
             ?>
         </div>
-        <div class="col">
+        <div class="col text-center">
+            <h2>Heatmap</h2>
             <?php
-            $filename="./photo/".$new_name."3.png";
-            if (file_exists($filename)) {
-                echo  " <a href=\"photo/".$new_name."3.png\" class=\"fancybox\">";
-                echo "<img class=\"msno\" src=\"./photo/".$new_name."3.png\"></a>";
+            if (file_exists("./missinginfo/".$new_name[0]."/heatmap.png")) {
+                echo  " <a href=\"missinginfo/".$new_name[0]."/heatmap.png\" class=\"fancybox\">";
+                echo "<img class=\"msno\" src=\"./missinginfo/".$new_name[0]."/heatmap.png\"></a>";
             }
             ?>
         </div>            
@@ -99,11 +99,11 @@
     <div class="row">
     <div class="col">  
     <?php
-    $path="./missinginfo/".$new_name.".html";
-    if (file_exists($path)) {
-        include($path);
-    }
-      
+    // $path="./missinginfo/".$new_name[0]."/".$new_name[0].".html";
+    // if (file_exists($path)) {
+    //     include($path);
+    // }
+     
     ?> 
     </div>       
     </div>

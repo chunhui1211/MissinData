@@ -7,17 +7,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
-        integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body style="background-color: rgb(243, 243, 243);font-family:Microsoft JhengHei;">
+<body >
     <div class="container-fluid">
-        <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px;">
+        <div class="row rowheader" >
             <div class="col">
-                <h1>Missing Data</h1>
+                <h1><a href='http://localhost/Missingdata/index.php'>Missing Data</a></h1>
             </div>
         </div>
     </div>
@@ -25,12 +25,12 @@
     <?php
         session_start();
         $new_name=$_SESSION['new_name'];
-        echo "<p class='lead mt-3'>檔案名稱:".$new_name."</p>";
-        echo "<p class='lead'>預覽次數:".$_SESSION['count']."</p>";
-        echo "<p class='lead'>填補欄位:".$_SESSION['col']."</p>";
+        echo "<p>檔案名稱:".$new_name."</p>";
+        echo "<p>預覽次數:".$_SESSION['count']."</p>";
+        echo "<p>填補欄位:".$_SESSION['col']."</p>";
         
         $method=$_SESSION['method'];
-        echo "<p class='lead'>填補方法:";
+        echo "<p>填補方法:";
         foreach ($method as $key => $value) {
             echo enmethodtoch($value).';';
         }
@@ -59,7 +59,7 @@
     <form action="check_imputation.php" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-4 mb-2">
-            <p class='lead'>填補方法設定:</p>
+            <p>填補方法設定:</p>
             <select class="custom-select" name="option">
             <?php
                 foreach ($method as $key => $value) {

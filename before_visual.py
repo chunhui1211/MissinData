@@ -10,7 +10,6 @@ import pandas_profiling
 
 params = sys.argv[1] 
 path=r'./upload/'+params
-# path=r'./upload/'+'titanic-190220010143.csv'
 
 if (os.path.splitext(path)[-1]==".csv"):
     df=pd.read_csv(path, parse_dates=True, encoding='UTF-8')
@@ -22,13 +21,17 @@ elif (os.path.splitext(path)[-1]==".xlsx"):
     
 if __name__=='__main__':
     
+    params=params.split('.',1)
     plt.rcParams['font.family']='DFKai-SB'
-    msno.matrix(df)   
-    plt.savefig('./photo/'+params+'1.png')  
-    msno.bar(df)
-    plt.savefig('./photo/'+params+'2.png')  
-    msno.heatmap(df)
-    plt.savefig('./photo/'+params+'3.png')  
 
-    # ptr=pandas_profiling.ProfileReport(df) 
-    # ptr.to_file(outputfile='./missinginfo/'+params+'.html')  
+    msno.matrix(df)   
+    plt.savefig('./missinginfo/'+params[0]+'/matrix.png')  
+
+    msno.bar(df)
+    plt.savefig('./missinginfo/'+params[0]+'/bar.png')  
+
+    msno.heatmap(df)
+    plt.savefig('./missinginfo/'+params[0]+'/heatmap.png')  
+
+    ptr=pandas_profiling.ProfileReport(df) 
+    ptr.to_file(outputfile='./missinginfo/'+params[0]+'/'+params[0]+'.html')  

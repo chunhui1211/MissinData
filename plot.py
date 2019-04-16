@@ -29,6 +29,7 @@ path=r'./upload/'+file
 df=pd.read_csv(path)
 
 name=file.split('.',1) 
+plt.rcParams['font.family']='DFKai-SB'
 
 def boxplot(method,im_df,var):  
     plt.figure(figsize = (5,10))

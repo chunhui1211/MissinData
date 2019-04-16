@@ -7,27 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body style="font-family:Microsoft JhengHei;">
+  <body>
   <div class="container-fluid"> 
-    <div class="row" style="box-shadow: 0 0 30px 0 rgba(0,123,255,0.20);height: 64px">
+    <div class="row rowheader">
         <div class="col">
-           <h1>Missing Data</h1>
+           <h1><a href='http://localhost/Missingdata/index.php'>Missing Data</a></h1>
         </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container-fluid">
   <div class="row">
-      <div class="col-9">
+      <div class="col-4">
     <?php   
     session_start(); 
-    echo "<p class='lead'>檔名名稱:".$_SESSION['name']."</p>";
-    echo "<p class='lead'>檔名型態:".$_SESSION['type']."</p>";
-    echo "<p class='lead'>檔名大小:".$_SESSION['size']."</p>";
-    echo "<p class='lead'>檔名新名稱:".$_SESSION['new_name']."</p>";
+    echo "<p>檔名名稱:".$_SESSION['name']."</p>";
+    echo "<p>檔名型態:".$_SESSION['type']."</p>";
+    echo "<p>檔名大小:".$_SESSION['size']."</p>";
+    echo "<p>檔名新名稱:".$_SESSION['new_name']."</p>";
     $new_name=$_SESSION['new_name'];
     ?>
     </div>

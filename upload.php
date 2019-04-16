@@ -27,6 +27,7 @@
             $_SESSION['new_name']=$new_name; 
             $new_name=substr($new_name,0,-4);
             mkdir("./imputation_photo/".$new_name);
+            mkdir("./missinginfo/".$new_name);
             header("Location: http://localhost/Missingdata/data.php");
             exit;            
                   
