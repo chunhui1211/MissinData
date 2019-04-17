@@ -24,7 +24,7 @@ def del_var(method):#列
     df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 def replace_mean(method):
     df=pd.read_csv(path)
-    df[var]=round(df[var].fillna(df[var].mean()))
+    df[var]=df[var].fillna(round(df[var].mean()))
     df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 def replace_custom(method):
     df=pd.read_csv(path)
@@ -78,7 +78,7 @@ def replace_linear(method):
 
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
-        new_df[var].loc[xx]=lm.predict(test_x)[i]
+        new_df[var].loc[xx]=round(lm.predict(test_x)[i])
 
     new_df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 def replace_logistic(method):

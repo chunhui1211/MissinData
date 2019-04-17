@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -118,7 +118,9 @@
             }
             if (isset($array)) {
                 for ($j=0;$j<count($array);$j++) {
-                    echo "<img class=\"$type\" src=\"./imputation_photo/$new_name/$array[$j]\">";
+                    echo  "<a href=\"imputation_photo/$new_name/$array[$j]\" class=\"fancybox\">";
+                    echo "<img class=\"$type\" src=\"./imputation_photo/$new_name/$array[$j]\"></a>";
+                    
                 }
             }
         }
@@ -210,25 +212,33 @@
         </div>
         </div>  
         </div>         
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            if($("img[class='factor']").length>0)
-            {
-                $("#factor").append($("<span>").addClass("badge badge-danger").text($("img[class='factor']").length));
-            }
-            if($("img[class='box']").length>0)
-            {
-                $("#box").append($("<span>").addClass("badge badge-danger").text($("img[class='box']").length));
-            }
-            if($("img[class='joint']").length>0)
-            {
-                $("#joint").append($("<span>").addClass("badge badge-danger").text($("img[class='joint']").length));
-            }  
-        });
-    </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>  
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+        <!-- jQuery v1.9.1 -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <!-- fancyBox v2.1.5 -->	
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    </body>
+        <script>
+            $('.fancybox').fancybox();
+        </script>
+        <script>
+            $(function () {
+                if($("img[class='factor']").length>0)
+                {
+                    $("#factor").append($("<span>").addClass("badge badge-danger").text($("img[class='factor']").length));
+                }
+                if($("img[class='box']").length>0)
+                {
+                    $("#box").append($("<span>").addClass("badge badge-danger").text($("img[class='box']").length));
+                }
+                if($("img[class='joint']").length>0)
+                {
+                    $("#joint").append($("<span>").addClass("badge badge-danger").text($("img[class='joint']").length));
+                }  
+            });
+        </script>
 </body>
 
 </html>
