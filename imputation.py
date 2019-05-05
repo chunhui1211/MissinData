@@ -98,7 +98,7 @@ def replace_logistic(method):
     train_x=train_df[train_df[var].isnull()].drop([var],1)
     train_x.fillna(0,inplace=True)
 
-    survived_predictions =lg.predict(train_x)
+    # survived_predictions =lg.predict(train_x)
 
     new_df = pd.read_csv(path) 
     data_null_len=len(new_df[new_df[var].isnull()])

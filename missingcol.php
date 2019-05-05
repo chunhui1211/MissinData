@@ -7,7 +7,7 @@ foreach ($_POST['col'] as $value)
     $col=$col.$value.',';       
 }   
 $col=substr($col,0,-1);
-$var="python missingcol.py ".$new_name.';'.$col;
+$var="/xampp/htdocs/MissingData/missingcol.py ".$new_name.';'.$col;
 $varpython = shell_exec($var);
 
 $col=explode(";",$varpython);

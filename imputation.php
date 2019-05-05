@@ -40,10 +40,10 @@
 
     trim($colname);
 
-    $sum="python imputation.py ".$new_name.";".$colname.";".$method.";".$count.";";    
+    $sum="/xampp/htdocs/MissingData/imputation.py ".$new_name.";".$colname.";".$method.";".$count.";";    
     echo shell_exec($sum);    
     
-    $sumplot="python plot.py ".$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";";   
+    $sumplot="/xampp/htdocs/MissingData/plot.py ".$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";";   
     echo shell_exec($sumplot);
     
     header("Location: http://localhost/Missingdata/afterload.php");   
