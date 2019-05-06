@@ -43,6 +43,21 @@ def barplot(method,im_df,var):
     #         ax.text(p.get_x() + p.get_width()/2., p.get_height(), '%d' % int(p.get_height()), 
     #                 fontsize=12, color='red', ha='center', va='bottom')
     plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_factor.png',bbox_inches='tight',facecolor="w" )
+def cabarplot(method,im_df,var): 
+    plt.figure()
+    plt.title(enmethoden(method),fontsize=24)
+    sns.countplot(x=var, data=im_df)
+    ax = plt.gca()     
+    for p in ax.patches:
+            ax.text(p.get_x() + p.get_width()/2., p.get_height(), '%d' % int(p.get_height()), 
+                    fontsize=12, color='red', ha='center', va='bottom')
+    plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_cabar.png',bbox_inches='tight',facecolor="w" )
+def pieplot(method,im_df,var): 
+    plt.figure() 
+    plt.title(enmethoden(method),fontsize=24)
+    dfp=im_df[var].value_counts()
+    plt.pie(dfp.values[:5], labels=dfp.index.values[:5],autopct='%1.1f%%', shadow=True)
+    plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_pie.png',bbox_inches='tight',facecolor="w" )
 def boxplot(method,im_df,var): 
     plt.figure(figsize = (5,10))
     g=sns.boxplot(y=im_df[var].dropna(),width=.2)
@@ -93,6 +108,8 @@ def enmethoden(methods):
         return methods.replace("linear","線性迴歸法")
     elif(methods=="logistic"):
         return methods.replace("logistic","邏輯迴歸法")
+    elif(methods=="mice"):
+        return methods.replace("mice","多重插補法")
     else:
         return methods.replace("first","原始資料")
 
@@ -103,11 +120,18 @@ for method in methods:
         if(x=='bar'):  
             barplot("first",df,var)
             barplot(method,im_df,var)
+        elif(x=='cabar'):  
+            cabarplot("first",df,var)
+            cabarplot(method,im_df,var)
+        elif(x=='pie'):  
+            pieplot("first",df,var)
+            pieplot(method,im_df,var)
         elif(x=='box'):
             boxplot("first",df,var)
             boxplot(method,im_df,var)
         elif(x=='joint'):
             Og_jointplot("first",df,var,ycol)
             jointplot(method,df,im_df,var,ycol)
+
 
 

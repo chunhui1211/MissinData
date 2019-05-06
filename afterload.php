@@ -52,6 +52,8 @@
                 return "線性迴歸法";
             } elseif ($method=="logistic") {
                 return "邏輯迴歸法";
+            }elseif ($method=="mice") {
+                return "多重插補法";
             }
         }
   
@@ -94,9 +96,11 @@
        <h1>視覺化</h1>    
     <nav>
         <div class="nav nav-tabs " id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="factor" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">長條圖</a>
-            <a class="nav-item nav-link " id="box" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">盒狀圖</a>
-            <a class="nav-item nav-link" id="joint" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">散點圖</a>
+            <a class="nav-item nav-link active" id="factor" data-toggle="tab" href="#nav-factor">數值長條圖</a>
+            <a class="nav-item nav-link " id="cabar" data-toggle="tab" href="#nav-cabar">文字長條圖</a>
+            <a class="nav-item nav-link " id="pie" data-toggle="tab" href="#nav-pie">圓餅圖</a>
+            <a class="nav-item nav-link " id="box" data-toggle="tab" href="#nav-box">盒狀圖</a>
+            <a class="nav-item nav-link" id="joint" data-toggle="tab" href="#nav-joint">散點圖</a>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -125,17 +129,27 @@
             }
         }
     ?>
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="tab-pane fade show active" id="nav-factor" role="tabpanel" aria-labelledby="nav-home-tab">
     <?php
         displayimg("factor");
     ?>
     </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="tab-pane fade" id="nav-cabar" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <?php
+        displayimg("cabar");
+    ?>
+    </div>
+    <div class="tab-pane fade" id="nav-pie" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <?php
+        displayimg("pie");
+    ?>
+    </div>
+    <div class="tab-pane fade" id="nav-box" role="tabpanel" aria-labelledby="nav-profile-tab">
     <?php
         displayimg("box");
     ?>
     </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <div class="tab-pane fade" id="nav-joint" role="tabpanel" aria-labelledby="nav-contact-tab">
     <?php
         displayimg("joint");
     ?>         
@@ -229,6 +243,14 @@
                 {
                     $("#factor").append($("<span>").addClass("badge badge-danger").text($("img[class='factor']").length));
                 }
+                if($("img[class='cabar']").length>0)
+                {
+                    $("#cabar").append($("<span>").addClass("badge badge-danger").text($("img[class='cabar']").length));
+                }  
+                if($("img[class='pie']").length>0)
+                {
+                    $("#pie").append($("<span>").addClass("badge badge-danger").text($("img[class='pie']").length));
+                }  
                 if($("img[class='box']").length>0)
                 {
                     $("#box").append($("<span>").addClass("badge badge-danger").text($("img[class='box']").length));

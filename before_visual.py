@@ -1,7 +1,7 @@
 import pandas as pd
 import sys 
 # import io
-import xlrd 
+# import xlrd 
 import os
 import matplotlib.pyplot as plt
 import missingno as msno

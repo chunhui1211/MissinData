@@ -55,7 +55,9 @@
                 return "線性迴歸法";
             } elseif ($method=="logistic") {
                 return "邏輯迴歸法";
-            }
+            }elseif ($method=="mice") {
+              return "多重插補法";
+          }
         }
         ?>       
         </div>
@@ -123,10 +125,16 @@
         <label for="linear">線性迴歸法</label>
         <input type="checkbox" name="method[logistic]" value="logistic" id="logistic" class="method"/>
         <label for="logistic" >邏輯迴歸法</label>
+        <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method"/>
+        <label for="mice" >多重插補法</label>
         <hr>
         <h4><strong>視覺化圖表</strong></h4>
         <input type="checkbox" name="vp[bar]" class="vp" id="bar" disabled>
-        <label  for="bar">長條圖</label>
+        <label  for="bar">數值長條圖</label>
+        <input type="checkbox"  name="vp[cabar]" class="vp" id="cabar" disabled>
+        <label  for="cabar">文字長條圖</label>
+        <input type="checkbox"  name="vp[pie]" class="vp" id="pie" disabled>
+        <label  for="pie">圓餅圖</label>
         <input type="checkbox"  name="vp[box]" class="vp" id="box" disabled>
         <label  for="box">盒狀圖</label>
         <input type="checkbox"  name="vp[joint]" class="vp" id="joint" disabled>
@@ -201,6 +209,8 @@
         $('#bar').attr("disabled", false);
         $('#box').attr("disabled", false);
         $('#joint').attr("disabled", false);
+        $('#cabar').attr("disabled", false);
+        $('#pie').attr("disabled", false);
       })
       
       $('#select').hide();
@@ -222,6 +232,10 @@
         $('label[for=linear],input#linear').hide();
         $('label[for=mode],input#mode').show();
         $('label[for=logistic],input#logistic').show();
+        $('label[for=mice],input#mice').hide();
+        $('label[for=cabar],input#cabar').show();
+        $('label[for=pie],input#pie').show();
+        $('label[for=bar],input#bar').hide();
       };
       var num=function(){
         $('label[for=logistic],input#logistic').hide();
@@ -229,6 +243,10 @@
         $('label[for=mode],input#mode').show();
         $('label[for=knn],input#knn').show();
         $('label[for=linear],input#linear').show();
+        $('label[for=mice],input#mice').show();
+        $('label[for=cabar],input#cabar').hide();
+        $('label[for=pie],input#pie').show();
+        $('label[for=bar],input#bar').show();
       };
       var option=function(){            
         var col_num = <?php echo json_encode($_SESSION['num']); ?>;

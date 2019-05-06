@@ -4,6 +4,7 @@ import numpy as np
 from pathlib import Path
 from sklearn import neighbors
 from sklearn.linear_model import LinearRegression,LogisticRegression
+from fancyimpute import IterativeImputer
 
 params=sys.argv[1] 
 params=params.split(';')
@@ -89,7 +90,8 @@ def replace_logistic(method):
             continue;
         train_df=train_df.drop([i],axis=1)
 
-    x=train_df.dropna()
+    x=train_df[pd.notnull(train_df[var])]
+    x=x.fillna(0)
     y=x[var]
     x=x.drop([var],1)
     lg=LogisticRegression()
@@ -106,6 +108,35 @@ def replace_logistic(method):
         xx=train_df[train_df[var].isnull()].index[i] 
         new_df[var].loc[xx]=lg.predict(train_x)[i]
         
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False)
+def replace_mice(method):
+
+    train_df = pd.read_csv(path) 
+    del_col=train_df.select_dtypes(include=['object']).columns
+    for i in del_col:
+        train_df=train_df.drop([i],axis=1)
+
+    countcolumns=0
+    for i in train_df.columns: 
+        if(i==var):
+            inx=countcolumns
+        countcolumns=countcolumns+1
+    
+    n_imputations = 10
+    XY_completed = []
+    for i in range(n_imputations):
+        imputer = IterativeImputer(n_iter=n_imputations, sample_posterior=True, random_state=i)
+        XY_completed.append(imputer.fit_transform(train_df.as_matrix()))
+    XY_completed = np.mean(XY_completed, 0)
+    XY_completed = np.round(XY_completed)
+    
+    new_df = pd.read_csv(path)
+    data_null_len=len(train_df[train_df[var].isnull()])
+
+    for i in range(data_null_len):
+        xx=train_df[train_df[var].isnull()].index[i]
+        new_df[var].loc[xx]=XY_completed[xx][inx]
+
     new_df.to_csv('./download/'+count+var+method+'_'+file,index=False)
 
 for method in methods:
@@ -129,3 +160,7 @@ for method in methods:
 
     elif (method=='logistic'):
         replace_logistic(method)
+
+    elif (method=='mice'):
+        replace_mice(method)
+        
