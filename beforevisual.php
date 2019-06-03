@@ -22,6 +22,7 @@
   <div class="container-fluid">
     <div class="row ml-5 mt-3">
     <?php
+        
         session_start();
         $new_name=$_SESSION['new_name'];
         echo "<span>檔名新名稱:".$new_name."</span>";
@@ -68,32 +69,46 @@
   <h1 class="text-center mt-5">資料遺漏狀況圖</h1>  
     <div class="row">    
         <div class="col text-center">
-            <h2>Matrix</h2>
+            <h2>數據矩陣 Matrix</h2>
+            <div style="height:100px;">
+            <p>快速直觀地查看數據完整及遺漏程度</p>  
+            </div>
             <?php
             $new_name=explode(".",$new_name);
             if (file_exists("./missinginfo/".$new_name[0]."/matrix.png")) {
                 echo  "<a href=\"missinginfo/".$new_name[0]."/matrix.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./missinginfo/".$new_name[0]."/matrix.png\"></a>";
             }
-            ?>    
+            ?><br/><br/>
+            <small>黑色代表為完整資料,白色為遺漏資料</small>
         </div>
         <div class="col text-center">
-            <h2>Bar Chart</h2>
+            <h2>長條圖 Bar Chart</h2>
+            <div style="height:100px;">
+            <p>將欄位以長條的方式簡單視覺化</p> 
+            </div>
             <?php
             if (file_exists("./missinginfo/".$new_name[0]."/bar.png")) {
                 echo  " <a href=\"missinginfo/".$new_name[0]."/bar.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./missinginfo/".$new_name[0]."/bar.png\"></a>";
             }
-            ?>
+            ?><br/><br/>
+            <small>遺失率低於5%較為無關緊要，超過10%可能導致統計分析偏差</small>
         </div>
         <div class="col text-center">
-            <h2>Heatmap</h2>
+            <h2>熱圖 Heatmap</h2>
+            <div style="height:100px;">
+            <p>一個變量的存在或不存在如何強烈影響另一個變量</p> 
+            </div>
             <?php
             if (file_exists("./missinginfo/".$new_name[0]."/heatmap.png")) {
                 echo  " <a href=\"missinginfo/".$new_name[0]."/heatmap.png\" class=\"fancybox\">";
                 echo "<img class=\"msno\" src=\"./missinginfo/".$new_name[0]."/heatmap.png\"></a>";
             }
-            ?>
+            ?><br/><br/>
+            <small>無效相關範圍從-1（如果一個變量出現，另一個肯定沒有）
+            到0（出現或不出現的變量對彼此沒有影響）
+            到1（如果一個變量出現，另一個肯定也出現）</small>
         </div>            
     </div>
     <div class="row">
@@ -103,10 +118,12 @@
     // if (file_exists($path)) {
     //     include($path);
     // }
-     
+
+
     ?> 
     </div>       
     </div>
+
 </div> 
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>  

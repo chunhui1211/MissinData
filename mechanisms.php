@@ -25,6 +25,7 @@
         <?php
             session_start();
             $new_name=$_SESSION['new_name'];
+            set_time_limit(0)
     
           ?> 
         <div class="col-4">
@@ -236,6 +237,8 @@
         $('label[for=cabar],input#cabar').show();
         $('label[for=pie],input#pie').show();
         $('label[for=bar],input#bar').hide();
+        $('label[for=box],input#box').hide();
+        $('label[for=joint],input#joint').hide();
       };
       var num=function(){
         $('label[for=logistic],input#logistic').hide();
@@ -247,6 +250,8 @@
         $('label[for=cabar],input#cabar').hide();
         $('label[for=pie],input#pie').show();
         $('label[for=bar],input#bar').show();
+        $('label[for=box],input#box').show();
+        $('label[for=joint],input#joint').show();
       };
       var option=function(){            
         var col_num = <?php echo json_encode($_SESSION['num']); ?>;

@@ -25,9 +25,10 @@
             $_SESSION['type']=$type;
             $_SESSION['size']= $size;   
             $_SESSION['new_name']=$new_name; 
-            $new_name=substr($new_name,0,-4);
-            mkdir("./imputation_photo/".$new_name);
-            mkdir("./missinginfo/".$new_name);
+            // $new_name=substr($new_name,0,-4);
+            $new=explode(".",$new_name);
+            mkdir("./imputation_photo/".$new[0]);
+            mkdir("./missinginfo/".$new[0]);
             header("Location: http://localhost/Missingdata/data.php");
             exit;            
                   
