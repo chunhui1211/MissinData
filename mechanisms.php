@@ -100,14 +100,6 @@
         ?>
         </div>
         <hr>
-        <!-- <h4><strong>遺漏機制</strong></h4>       
-        <input type="radio" name="mrbook" value="MCAR" id='MCAR' />
-        <label for='MCAR'>MCAR</label><br/>
-        <input type="radio" name="mrbook" value="MAR" id="MAR" />
-        <label for='MAR'>MAR</label><br/>
-        <input type="radio" name="mrbook" value="MNAR" id="MNAR" />
-        <label for='MNAR'>MNAR</label><br/>
-        <hr> -->
         <h4><strong>填補方法</strong></h4>
         <strong>刪除法</strong>
         <input type="checkbox" name="method[del]" value="del" id="del" class="method"/>
@@ -163,7 +155,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
-      
       $('button[type="submit"]').click(function(){
         var colname=$('input[name="colname[]"]:checked').length;
         var method=$('input[class="method"]:checked').length;

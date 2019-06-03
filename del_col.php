@@ -23,7 +23,6 @@ if (isset($_POST['col'])) {
         }           
     }
     $_SESSION['colname'] = array_values($_SESSION['colname']); 
-
-    header("Location: http://localhost/Missingdata/filtercol.php");   
-    exit;
 }
+header("Location: http://localhost/Missingdata/filtercol.php");   
+exit;
