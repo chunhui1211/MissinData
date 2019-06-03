@@ -51,7 +51,7 @@
                 </div>
         </div>
         <div class="col-1">
-        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/filtercol.php'"><i class="fas fa-sliders-h mr-2"></i>設定填補</button>
+        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/delcol.php'"><i class="fas fa-sliders-h mr-2"></i>設定填補</button>
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">

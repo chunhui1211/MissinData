@@ -89,7 +89,7 @@ def replace_logistic(train_df,var):
     data_null_len=len(train_df[train_df[var].isnull()])
     for i in range(data_null_len):
             xx=train_df[train_df[var].isnull()].index[i]
-            new_df[var].loc[xx]=lm.predict(test_x)[i]
+            new_df[var].loc[xx]=lg.predict(test_x)[i]
 
     return new_df
 

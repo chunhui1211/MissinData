@@ -7,7 +7,6 @@ $missingrate=shell_exec($command2.$params);
 $missingrate=explode(";",$missingrate);
 $missing=explode(",",$missingrate[0]);
 $rate=explode(",",$missingrate[1]);
-
 $_SESSION['colname']=$missing;
 $_SESSION['rate']=$rate;
 

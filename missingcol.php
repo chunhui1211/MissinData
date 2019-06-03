@@ -49,4 +49,3 @@ $_SESSION['list']=array();
 
 header("Location: http://localhost/Missingdata/mechanisms.php");   
 exit;
-?>
