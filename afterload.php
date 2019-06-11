@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="container-fluid">
-    <?php
+    <?php      
         session_start();
         $new_name=$_SESSION['new_name'];
         echo "<p>檔案名稱:".$new_name."</p>";
@@ -114,8 +114,8 @@
                 list($filesname, $kzm)=explode(".", $file);
                 if ($kzm=="png" and strpos($filesname, $type)!==false) {
                     if (!is_dir('./'.$file) and
-                    substr($file, 0, 1)==$_SESSION['count'] and
-                    substr($file, 1, strlen($_SESSION['col']))==$_SESSION['col']) {
+                    substr($file, 0, strlen($_SESSION['count']))==$_SESSION['count'] and
+                    substr($file, strlen($_SESSION['count']), strlen($_SESSION['col']))==$_SESSION['col']) {
                         $array[]=$file;
                     }
                 }

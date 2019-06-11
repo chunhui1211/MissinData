@@ -8,7 +8,9 @@ import sys
 import datetime
 from pathlib import Path
 import random
-
+import io
+import matplotlib.ticker as ticker 
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 params=sys.argv[1] 
 params=params.split(';')
 params=params[:-1]
@@ -32,11 +34,15 @@ df=pd.read_csv(path)
 name=file.split('.',1) 
 plt.rcParams["axes.labelsize"] = 24
 def barplot(method,im_df,var): 
-    x=max(im_df[var])-min(im_df[var])
-    y=round(x/20)
+  
     g=sns.factorplot(var,data=im_df,aspect=2,kind="count",color="steelblue")
-    g.set_xticklabels(step=y)
+    if len(np.unique(im_df[var]))>=20:
+        # x=max(im_df[var])-min(im_df[var])
+        # y=round(x/20)
+        g.set_xticklabels(step=10)
     plt.title(enmethoden(method),fontsize=24)
+    plt.ScalarFormatter()
+
     # ax = plt.gca()     
     # for p in ax.patches:
     #     if(p.get_height()==im_df[var].value_counts().max()):  

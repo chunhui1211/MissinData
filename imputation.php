@@ -41,10 +41,12 @@
     trim($colname);
 
     $sum="/xampp/htdocs/MissingData/imputation.py ".$new_name.";".$colname.";".$method.";".$count.";";    
-    echo shell_exec($sum);    
+    shell_exec($sum);    
     
     $sumplot="/xampp/htdocs/MissingData/plot.py ".$new_name.";".$colname.";".$method.";".$ycol.";".$vp.";".$count.";";   
     echo shell_exec($sumplot);
+
+    
     
     header("Location: http://localhost/Missingdata/afterload.php");   
     exit;

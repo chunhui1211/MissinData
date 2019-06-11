@@ -5,7 +5,8 @@ from pathlib import Path
 from sklearn import neighbors
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from fancyimpute import IterativeImputer
-
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 params=sys.argv[1] 
 params=params.split(';')
 file=params[0]
