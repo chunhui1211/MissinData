@@ -23,9 +23,11 @@
     </div>
     <form id="form1" action="del_col.php" method="post" enctype="multipart/form-data">
         <div class="container">
-            <div class="row mt-5">
+            <div class="row mt-3">
                 <div class="col">
                     <p><i class="fas fa-trash-alt mr-2"></i></i>請選擇欲刪除的欄位</p>
+                    <input type="checkbox" name="col[]" id="none" />
+                    <label for="none">無</label><br/>
                     <?php
                     session_start();
                     $new_name = $_SESSION['new_name'];
@@ -37,8 +39,18 @@
                     ?>
                 </div>
                 <div class="col">
-                    <br />
                     <p><i class="fas fa-percent mr-2"></i>遺失率參考</p>
+                    <?php
+                    $new_name = explode(".", $new_name);
+                    if (file_exists("./missinginfo/" . $new_name[0] . "/missingrate.png")) {
+                        echo  "<a href=\"missinginfo/" . $new_name[0] . "/missingrate.png\" >";
+                        echo "<img class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/missingrate.png\"></a>";
+                    }
+                    ?>
+
+                </div>
+                <div class="col">
+                    <br /><br />
                     <?php
                     for ($i = 0; $i < count($_SESSION['colname']); $i++) {
                         echo $_SESSION['colname'][$i] . ':' . $_SESSION['rate'][$i] . '%';
@@ -46,10 +58,8 @@
                     }
                     ?>
                 </div>
-                <div class="col">
-                </div>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>送出</button>
+            <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>下一步</button>
             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -67,5 +77,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script type="text/javascript">
         window.history.forward(1);
+        $('button[type="submit"]').click(function() {
+        var colname = $('input[name="col[]"]:checked').length;
+        if (colname == 0) {
+          alert("請選擇選項");
+          return false;
+        } 
+         else {
+          document.form1.submit();
+        }
+      });
     </script>
 </body>

@@ -113,19 +113,6 @@
           到1（如果一個變量出現，另一個肯定也出現）</small>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <?php
-        // $path="./missinginfo/".$new_name[0]."/".$new_name[0].".html";
-        // if (file_exists($path)) {
-        //     include($path);
-        // }
-
-
-        ?>
-      </div>
-    </div>
-
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -136,7 +123,6 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
 <script>
-  window.history.forward(1);
   $('.fancybox').fancybox();
 </script>
 
