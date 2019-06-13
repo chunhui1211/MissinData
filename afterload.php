@@ -239,6 +239,7 @@
         </script>
         <script>
             $(function () {
+
                 if($("img[class='factor']").length>0)
                 {
                     $("#factor").append($("<span>").addClass("badge badge-danger").text($("img[class='factor']").length));

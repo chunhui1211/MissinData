@@ -97,7 +97,7 @@
         ?><br /><br />
         <small>遺失率低於5%較為無關緊要，超過10%可能導致統計分析偏差</small>
       </div>
-      <div class="col text-center">
+      <div class="col text-center" id="heatmap">
         <h2>熱圖 Heatmap</h2>
         <div style="height:100px;">
           <p>一個變量的存在或不存在如何強烈影響另一個變量</p>
@@ -105,7 +105,7 @@
         <?php
         if (file_exists("./missinginfo/" . $new_name[0] . "/heatmap.png")) {
           echo  " <a href=\"missinginfo/" . $new_name[0] . "/heatmap.png\" class=\"fancybox\">";
-          echo "<img class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/heatmap.png\"></a>";
+          echo "<img id='heatimg' class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/heatmap.png\"></a>";
         }
         ?><br /><br />
         <small>無效相關範圍從-1（如果一個變量出現，另一個肯定沒有）
@@ -124,6 +124,12 @@
 </body>
 <script>
   $('.fancybox').fancybox();
+  var len=$('#heatmap').find("img")
+  if(len.length==0)
+  {
+    $('#heatmap').css( "display", "none" )
+  }
+
 </script>
 
 </html>

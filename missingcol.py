@@ -9,7 +9,7 @@ file=params[0]
 var=params[1]
 var=var.split(',')
 path=r'./upload/'+file
-df=pd.read_csv(path,parse_dates=True, encoding='UTF-8')
+df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
 # df=pd.read_csv(path,skipfooter=1,parse_dates=True, encoding='UTF-8')
 x=[]
 y=[]

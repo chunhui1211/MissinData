@@ -29,7 +29,7 @@ vp=vp.split(',')
 count=params[5]
 
 path=r'./upload/'+file
-df=pd.read_csv(path)
+df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
 
 name=file.split('.',1) 
 plt.rcParams["axes.labelsize"] = 24
