@@ -21,7 +21,10 @@ def del_var(df,var):#列
     df =df.dropna(subset=[var])
     return df
 def replace_mean(df,var):
-    df[var] =round(df[var].fillna(df[var].mean()))
+    if(df[var].dtypes=='int64'):
+        df[var]=df[var].fillna(round(df[var].mean()))
+    elif(df[var].dtypes=='float64'):
+        df[var]=df[var].fillna(round(df[var].mean(),2))  
     return df
 def replace_custom(df,var,value):
     df[var] = df[var].fillna(value)
@@ -77,8 +80,11 @@ def replace_linear(train_df,var):
 def replace_logistic(train_df,var):
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
+        if(i==var):
+            continue
         train_df=train_df.drop([i],axis=1)
-    x=df.dropna()
+    x=train_df[pd.notnull(train_df[var])]
+    x=x.fillna(0)
     y=x[var]
     x=x.drop([var],1)
     lg=LogisticRegression()
@@ -110,4 +116,4 @@ elif (method=='linear'):
 elif (method=='logistic'):
     df=replace_logistic(df,thead)
     
-df.to_csv('./upload/'+file,index=False)
+df.to_csv('./upload/'+file,index=False,encoding='utf-8-sig')

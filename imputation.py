@@ -19,20 +19,23 @@ path=r'./upload/'+file
 def drop_var(method):#行
     df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     df = df.drop(var,axis=1)
-    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def del_var(method):#列
     df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     df =df.dropna(subset=[var])
-    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_mean(method):
     df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
-    df[var]=df[var].fillna(round(df[var].mean()))
-    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    if(df[var].dtypes=='int64'):
+        df[var]=df[var].fillna(round(df[var].mean()))
+    elif(df[var].dtypes=='float64'):
+        df[var]=df[var].fillna(round(df[var].mean(),2))  
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_custom(method):
-    df=pd.read_csv(path)
+    df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     popular = df[var].value_counts().idxmax()
     df[var] = df[var].fillna(popular)
-    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_knn(method):
     train_df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     del_col=train_df.select_dtypes(include=['object']).columns
@@ -53,13 +56,12 @@ def replace_knn(method):
     data.fillna(0,inplace=True)
     new_df = pd.read_csv(path) 
     data_null_len=len(new_df[new_df[var].isnull()])
-
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
         Xnew=np.array([data.iloc[xx].tolist()])
         ynew=trained_model.predict(Xnew)
         new_df[var].loc[xx]=ynew[0]    
-    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_linear(method):
     train_df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     del_col=train_df.select_dtypes(include=['object']).columns
@@ -74,21 +76,19 @@ def replace_linear(method):
     test_x=train_df[train_df[var].isnull()].drop([var],1)
     test_x.fillna(0,inplace=True)
     lm.predict(test_x)
-
     new_df = pd.read_csv(path) 
     data_null_len=len(train_df[train_df[var].isnull()])
 
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
         new_df[var].loc[xx]=round(lm.predict(test_x)[i])
-
-    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_logistic(method):
     train_df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         if(i==var):
-            continue;
+            continue
         train_df=train_df.drop([i],axis=1)
 
     x=train_df[pd.notnull(train_df[var])]
@@ -97,21 +97,16 @@ def replace_logistic(method):
     x=x.drop([var],1)
     lg=LogisticRegression()
     lg.fit(x,y)
-
     train_x=train_df[train_df[var].isnull()].drop([var],1)
     train_x.fillna(0,inplace=True)
-
     # survived_predictions =lg.predict(train_x)
-
     new_df = pd.read_csv(path) 
     data_null_len=len(new_df[new_df[var].isnull()])
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i] 
-        new_df[var].loc[xx]=lg.predict(train_x)[i]
-        
-    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+        new_df[var].loc[xx]=lg.predict(train_x)[i]       
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_mice(method):
-
     train_df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
@@ -138,7 +133,7 @@ def replace_mice(method):
         xx=train_df[train_df[var].isnull()].index[i]
         new_df[var].loc[xx]=XY_completed[xx][inx]
 
-    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8')
+    new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 
 for method in methods:
     if (method=='mean'):

@@ -121,8 +121,8 @@
           <label for="linear">線性迴歸法</label>
           <input type="checkbox" name="method[logistic]" value="logistic" id="logistic" class="method" />
           <label for="logistic">邏輯迴歸法</label>
-          <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
-          <label for="mice">多重插補法</label>
+          <!-- <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
+          <label for="mice">多重插補法</label> -->
           <hr>
           <h4><strong>視覺化圖表</strong></h4>
           <input type="checkbox" name="vp[bar]" class="vp" id="bar" disabled>

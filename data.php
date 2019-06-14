@@ -23,7 +23,7 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-4">
+      <div class="col-10">
         <?php
         session_start();
         echo "<p>檔名名稱:" . $_SESSION['name'] . "</p>";
@@ -56,7 +56,7 @@
           </div>
         </div>
         <form action="beforedatafile.php" method="post" enctype="multipart/form-data">
-          <button type="submit" class="btn btn-primary mt-3" name="submit" data-toggle="modal" data-target="#Modal"><i class="fas fa-chart-bar mr-2"></i>資料視覺化</button>
+          <button type="submit" class="btn btn-primary mt-3" name="submit" data-toggle="modal" data-target="#Modal"><i class="fas fa-chart-bar mr-2"></i>遺漏分析</button>
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -119,7 +119,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 </body>
 <script type="text/javascript">
-  window.history.forward(1);
+  // window.history.forward(1);
 </script>
 
 </html>
