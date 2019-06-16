@@ -93,7 +93,7 @@
     </form>
    <div class="row">
     <div class="col">
-       <h1>視覺化</h1>    
+       <h1>視覺化圖表</h1>    
     <nav>
         <div class="nav nav-tabs " id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="factor" data-toggle="tab" href="#nav-factor">數值長條圖</a>
@@ -159,7 +159,7 @@
    </div>       
     <div class="row mt-5">
         <div class="col">
-        <h1>檔案</h1>
+        <h1>資料內容</h1>
         <ul class="nav nav-tabs">            
         <?php
             for ($i = 0 ; $i < count($method) ; $i++) 

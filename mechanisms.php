@@ -104,13 +104,7 @@
             ?>
           </div>
           <hr>
-          <h4><strong>填補方法</strong></h4>
-          <strong>刪除法</strong>
-          <input type="checkbox" name="method[del]" value="del" id="del" class="method" />
-          <label for="del">列表刪除</label>
-          <small>註:將遺漏的欄位整行資料刪除</small>
-          <br /><br />
-          <strong>補值法</strong>
+          <h4><strong>預覽填補方法</strong></h4>        
           <input type="checkbox" name="method[mean]" value="mean" id="mean" class="method" />
           <label for="mean">平均值</label>
           <input type="checkbox" name="method[mode]" value="mode" id="mode" class="method" />
@@ -121,10 +115,13 @@
           <label for="linear">線性迴歸法</label>
           <input type="checkbox" name="method[logistic]" value="logistic" id="logistic" class="method" />
           <label for="logistic">邏輯迴歸法</label>
+          <input type="checkbox" name="method[del]" value="del" id="del" class="method" />
+          <label for="del">列表刪除</label>
+          <small>註:將遺漏的欄位整行資料刪除</small>
           <!-- <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
           <label for="mice">多重插補法</label> -->
           <hr>
-          <h4><strong>視覺化圖表</strong></h4>
+          <h4><strong>視覺化圖表樣式</strong></h4>
           <input type="checkbox" name="vp[bar]" class="vp" id="bar" disabled>
           <label for="bar">數值長條圖</label>
           <input type="checkbox" name="vp[cabar]" class="vp" id="cabar" disabled>

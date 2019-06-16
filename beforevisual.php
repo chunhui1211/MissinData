@@ -68,7 +68,7 @@
       <div class="col-10">
       </div>
     </div>
-    <h1 class="text-center mt-5">資料遺漏狀況圖</h1>
+    <h1 class="text-center mt-4 mb-4">資料遺漏狀況圖</h1>
     <div class="row">
       <div class="col text-center">
         <h2>數據矩陣 Matrix</h2>
@@ -108,10 +108,12 @@
           echo "<img id='heatimg' class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/heatmap.png\"></a>";
         }
         ?><br /><br />
-        <small>無效相關範圍從-1（如果一個變量出現，另一個肯定沒有）
-          到0（出現或不出現的變量對彼此沒有影響）
-          到1（如果一個變量出現，另一個肯定也出現）</small>
+        <small>無效相關範圍從-1(如果一個變量出現另一個肯定沒有)
+          到0(出現或不出現的變量對彼此沒有影響)
+          到1(如果一個變量出現另一個肯定也出現)</small>
+         <br/><br/><br/> 
       </div>
+      
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

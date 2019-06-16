@@ -26,7 +26,7 @@ $filePath = $name[0].'.'.$type;
 header("Cache-Control: public");
 header("Content-Description: File Transfer");
 header("Content-Disposition: attachment; filename=$filePath");
-header("Content-Type: application/zip");
+header("Content-Type: application/zip;charset=UTF-8");
 header("Content-Transfer-Encoding: binary");
 readfile($filePath);
 

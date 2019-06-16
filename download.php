@@ -35,7 +35,7 @@
                 <label for="xls">xls</label>
                 <input type="radio" name="type" value="xlsx" id="xlsx" />
                 <label for="xlsx">xlsx</label>
-                <button type="submit" class="btn btn-warning"name="submit"><i class="fas fa-download"></i>檔案匯出</button>
+                <button type="submit" class="btn btn-warning"name="submit"><i class="fas fa-download"></i>檔案輸出</button>
 
                 <!-- <button type="button" class="btn btn-warning" onclick="location.href='downloadfile.php?file=<?= $name[0] ?>&type=<?= $name[1] ?>'"><i class="fas fa-download"></i>檔案匯出</button> -->
                 <button type="button" class="btn btn-primary ml-5" onclick="location.href='http://localhost/Missingdata/index.php'"><i class="fas fa-home"></i>首頁</button>
