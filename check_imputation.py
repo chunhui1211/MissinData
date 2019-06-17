@@ -13,7 +13,7 @@ thead=params[1]
 method=params[2]
 path=r'./upload/'+file
 df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
-
+print(params)
 def drop_var(df,var):#行
     df = df.drop(var,axis=1)
     return df

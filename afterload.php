@@ -27,9 +27,22 @@
         $new_name=$_SESSION['new_name'];
         echo "<p>檔案名稱:".$new_name."</p>";
         echo "<p>預覽次數:".$_SESSION['count']."</p>";
-        echo "<p>填補欄位:".$_SESSION['col']."</p>";
-        
+        echo "<p>填補欄位:".$_SESSION['col']."</p>";       
         $method=$_SESSION['method'];
+        foreach($_SESSION['col_cage'] as  $value)
+        {       
+            if($value==$_SESSION['col'])
+            {
+                $method_array = array("del","mode","logistic");
+            }       
+        }
+        foreach($_SESSION['col_num'] as  $value)
+        {
+            if($value==$_SESSION['col'])
+            {
+                $method_array = array("del","mean","mode","knn","linear");
+            }       
+        }
         echo "<p>填補方法:";
         foreach ($method as $key => $value) {
             echo enmethodtoch($value).';';
@@ -40,9 +53,7 @@
         {
             if ($method=="del") {
                 return "列表刪除";
-            } elseif ($method=="delrow") {
-                return "欄位刪除";
-            } elseif ($method=="mean") {
+            }  elseif ($method=="mean") {
                 return "平均值";
             } elseif ($method=="mode") {
                 return "眾值";
@@ -58,13 +69,13 @@
         }
   
     ?>
-    <form action="check_imputation.php" method="post" enctype="multipart/form-data">
+    <form action="imputation.php" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-4 mb-2">
             <p>填補方法設定:</p>
             <select class="custom-select" name="option">
-            <?php
-                foreach ($method as $key => $value) {
+            <?php         
+                foreach ($method_array as $key => $value) {
                     $s=enmethodtoch($value);
                     echo "<option value='{$value}'>{$s}</option>";
                 }
@@ -76,7 +87,7 @@
                 onclick="location.href='http://localhost/Missingdata/mechanisms.php'"><i class="fas fa-undo mr-2"></i>返回修改</button>           
         </div>
         <div class="col-1 mt-5">          
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#Modal"><i class="far fa-check-circle mr-2"></i>確定填補</button>
+            <button type="submit" name="submit" value="check" class="btn btn-primary" data-toggle="modal" data-target="#Modal"><i class="far fa-check-circle mr-2"></i>確定填補</button>
             <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">

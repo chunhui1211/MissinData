@@ -31,6 +31,6 @@
     $_SESSION['method']="";
     $_SESSION['col']="";
     $_SESSION['count']="";
-    header("Location: http://localhost/Missingdata/mechanisms.php");   
-    exit;
+    // header("Location: http://localhost/Missingdata/mechanisms.php");   
+    // exit;
 ?>
