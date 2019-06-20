@@ -26,10 +26,7 @@ def del_var(method):#列
     df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_mean(method):
     df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
-    if(df[var].dtypes=='int64'):
-        df[var]=df[var].fillna(round(df[var].mean()))
-    elif(df[var].dtypes=='float64'):
-        df[var]=df[var].fillna(round(df[var].mean(),2))  
+    df[var]=df[var].fillna(round(df[var].mean()))  
     df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 def replace_custom(method):
     df=pd.read_csv(path, parse_dates=True,encoding='utf-8')

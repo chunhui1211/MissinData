@@ -33,6 +33,7 @@ df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
 
 name=file.split('.',1) 
 plt.rcParams["axes.labelsize"] = 24 
+plt.rcParams['axes.unicode_minus']=False
 def barplot(method,im_df,var): 
     plt.figure()
     # df[var]=round(df[var])

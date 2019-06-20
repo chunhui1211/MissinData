@@ -36,7 +36,7 @@
           <input type="radio" name="type" value="xls" id="xls" />
           <label for="xls">xls</label><br />
           <input type="radio" name="type" value="xlsx" id="xlsx" />
-          <label for="xlsx">xlsx</label>
+          <label for="xlsx">xlsx</label><br />
           <button type="submit" class="btn btn-warning" name="submit"><i class="fas fa-download"></i>檔案匯出</button>
           <br /><br />
           <?php

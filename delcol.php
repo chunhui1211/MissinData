@@ -40,28 +40,32 @@
                     ?>
                 </div>
                 <div class="col">
+                    <p><i class="fas fa-trash-alt mr-2"></i></i>請選擇刪除資料列個數</p>
+                    <input type="radio" name="del" id="nonee" value="none" />
+                    <label for="nonee">無</label><br />
+
+                    <!-- <input type="radio" name="del" id="percent" value="percent" />
+                    <input type="textbox" name="delpercent" style="width:30px;"  />
+                    <label for="percent">%</label><br /> -->
+
+                    <input type="radio" name="del" id="number" value="number" />
+                    <input type="textbox" name="delnumber" style="width:30px;" id="numtext" />
+                    <label for="number">個</label><br /><br /><br /><br /><br /><br />
+                    <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>下一步</button>
+                </div>
+                <div class="col">
                     <p><i class="fas fa-percent mr-2"></i>遺失率參考</p>
                     <?php
                     $new_name = explode(".", $new_name);
                     if (file_exists("./missinginfo/" . $new_name[0] . "/missingrate.png")) {
                         echo  "<a href=\"missinginfo/" . $new_name[0] . "/missingrate.png\" class=\"fancybox\">";
                         echo "<img class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/missingrate.png\"></a>";
-                        
                     }
                     ?>
 
                 </div>
-                <!-- <div class="col">
-                    <br /><br />
-                    <?php
-                    // for ($i = 0; $i < count($_SESSION['colname']); $i++) {
-                    //     echo $_SESSION['colname'][$i] . ':' . $_SESSION['rate'][$i] . '%';
-                    //     echo "<br/>";
-                    // }
-                    ?>
-                </div> -->
             </div>
-            <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>下一步</button>
+          
             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -82,7 +86,6 @@
     <!-- fancyBox v2.1.5 -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script type="text/javascript">
-        // window.history.forward(1);
         $('.fancybox').fancybox();
         $('button[type="submit"]').click(function() {
             var colname = $('input[name="col[]"]:checked').length;
@@ -93,5 +96,12 @@
                 document.form1.submit();
             }
         });
+        $('#numtext').click(function(){
+            $('#number').prop('checked', true);             
+        })
+
+        $('#nonee').click(function(){
+            $('#numtext').val("")      
+        })       
     </script>
 </body>

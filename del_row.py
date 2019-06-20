@@ -7,18 +7,12 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 params=sys.argv[1] 
 params=params.split(';')
 file=params[0]
-var=params[1]
-var=var.split(',')
+number=params[1]
 path=r'./upload/'+file
 
 df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
-var=var[:-1]
 
-x=[]
-for col in var:   
-    df = df.drop(col,axis=1)
-
-df.to_csv(path,index = False,encoding='utf-8-sig')    
-
-
- 
+for i in range(len(df)):  
+    if df.loc[i].isnull().sum()>=int(number):
+        df=df.drop(index=[i])
+df.to_csv(path,index = False,encoding='utf-8-sig')      
