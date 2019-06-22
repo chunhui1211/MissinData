@@ -29,18 +29,23 @@
         echo "<p>預覽次數:" . $_SESSION['count'] . "</p>";
         echo "<p>填補欄位:" . $_SESSION['col'] . "</p>";
         $method = $_SESSION['method'];
-        foreach ($_SESSION['col_cage'] as  $value) {
-            if ($value == $_SESSION['col']) {
-                $method_array = array("del", "mode", "logistic");
+        $method_array = array();
+        if (is_array($_SESSION['col_cage'])) {
+            foreach ($_SESSION['col_cage'] as  $value) {
+                if ($value == $_SESSION['col']) {
+                    $method_array = array("del", "mode", "logistic");
+                }
             }
         }
-        foreach ($_SESSION['col_num'] as  $value) {
-            if ($value == $_SESSION['col']) {
-                $method_array = array("del", "mean", "mode", "knn", "linear");
+        if (is_array($_SESSION['col_num'])) {
+            foreach ($_SESSION['col_num'] as  $value) {
+                if ($value == $_SESSION['col']) {
+                    $method_array = array("del", "mean", "mode", "knn", "linear","mice");
+                } 
             }
         }
         echo "<p>填補方法:";
-        foreach ($method as $key => $value) {
+        foreach ($_SESSION['method'] as $key => $value) {
             echo enmethodtoch($value) . ';';
         }
         echo "</p>";
