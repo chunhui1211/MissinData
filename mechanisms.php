@@ -125,11 +125,12 @@
                   <label for="linear">線性迴歸法</label>
                   <input type="checkbox" name="method[logistic]" value="logistic" id="logistic" class="method" />
                   <label for="logistic">邏輯迴歸法</label>
+                  <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
+                  <label for="mice">多重插補法</label>
                   <input type="checkbox" name="method[del]" value="del" id="del" class="method" />
                   <label for="del">列表刪除</label>
-                  <small>註:將遺漏的欄位整行資料刪除</small>
-                  <!-- <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
-                  <label for="mice">多重插補法</label> -->
+                  <small>註:存在遺漏值整筆刪除</small>
+
                   <hr>
                   <h4><strong>視覺化圖表樣式</strong></h4>
                   <input type="checkbox" name="vp[bar]" class="vp" id="bar" disabled>
@@ -172,11 +173,12 @@
                   <label for="linear1">線性迴歸法</label>
                   <input type="radio" name="method" value="logistic" id="logistic1" class="method" />
                   <label for="logistic1">邏輯迴歸法</label>
+                  <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
+                  <label for="mice">多重插補法</label>
                   <input type="radio" name="method" value="del" id="del1" class="method" />
                   <label for="del1">列表刪除</label>
-                  <!-- <small>註:將遺漏的欄位整行資料刪除</small> -->
-                  <!-- <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
-                  <label for="mice">多重插補法</label> -->
+                  <small>註:存在遺漏值整筆刪除</small>
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
