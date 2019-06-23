@@ -63,6 +63,8 @@
                         return "線性迴歸法";
                     } elseif ($method == "logistic") {
                         return "邏輯迴歸法";
+                    }elseif ($method == "mice") {
+                        return "多重插補法";
                     }
                 }
                 ?>

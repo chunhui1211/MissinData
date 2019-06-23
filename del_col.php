@@ -13,15 +13,17 @@ if (isset($_POST['col']))
 
     foreach ($_POST['col'] as $value) 
     {        
+        
         for($i=0;$i<sizeof($_SESSION['colname']);$i++)
         {
+            
             if($_SESSION['colname'][$i]==$value)
             {  
                 unset($_SESSION['colname'][$i]);
+                $_SESSION['colname'] = array_values($_SESSION['colname']); 
             }  
         }   
     }
-    $_SESSION['colname'] = array_values($_SESSION['colname']); 
 }
 
 if(isset($_POST['del']))

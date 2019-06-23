@@ -173,8 +173,8 @@
                   <label for="linear1">線性迴歸法</label>
                   <input type="radio" name="method" value="logistic" id="logistic1" class="method" />
                   <label for="logistic1">邏輯迴歸法</label>
-                  <input type="checkbox" name="method[mice]" value="mice" id="mice" class="method" />
-                  <label for="mice">多重插補法</label>
+                  <input type="radio" name="method" value="mice" id="mice1" class="method" />
+                  <label for="mice1">多重插補法</label>
                   <input type="radio" name="method" value="del" id="del1" class="method" />
                   <label for="del1">列表刪除</label>
                   <small>註:存在遺漏值整筆刪除</small>
