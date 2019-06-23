@@ -307,6 +307,13 @@
         $('label[for=bar],input#bar').hide();
         $('label[for=box],input#box').hide();
         $('label[for=joint],input#joint').hide();
+        
+        $('label[for=mean1],input#mean1').hide();
+        $('label[for=knn1],input#knn1').hide();
+        $('label[for=linear1],input#linear1').hide();
+        $('label[for=mode1],input#mode1').show();
+        $('label[for=logistic1],input#logistic1').show();
+        $('label[for=mice1],input#mice1').hide();
       };
       var num = function() {
         $('label[for=logistic],input#logistic').hide();
@@ -320,6 +327,13 @@
         $('label[for=bar],input#bar').show();
         $('label[for=box],input#box').show();
         $('label[for=joint],input#joint').show();
+
+        $('label[for=logistic1],input#logistic1').hide();
+        $('label[for=mean1],input#mean1').show();
+        $('label[for=mode1],input#mode1').show();
+        $('label[for=knn1],input#knn1').show();
+        $('label[for=linear1],input#linear1').show();
+        $('label[for=mice1],input#mice1').show();
       };
       var option = function() {
         var col_num = <?php echo json_encode($_SESSION['num']); ?>;

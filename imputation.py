@@ -15,7 +15,6 @@ methods=params[2]
 count=params[3]
 methods=methods.split(',')
 path=r'./upload/'+file
-
 def del_var(method):#列
     df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
     df =df.dropna(subset=[var])

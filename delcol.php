@@ -40,7 +40,7 @@
                     ?>
                 </div>
                 <div class="col">
-                    <p><i class="fas fa-trash-alt mr-2"></i></i>請選擇刪除資料列個數</p>
+                    <p><i class="fas fa-trash-alt mr-2"></i></i>請設定刪除資料列個數</p>
                     <input type="radio" name="del" id="nonee" value="none" />
                     <label for="nonee">無</label><br />
 

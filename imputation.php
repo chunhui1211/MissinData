@@ -1,4 +1,5 @@
 <?php
+// set_time_limit(360);
 if ($_POST['submit'] == 'imputation') {
     session_start();
     $new_name = $_SESSION['new_name'];
