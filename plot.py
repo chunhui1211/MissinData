@@ -21,12 +21,13 @@ var=params[1]
 methods=params[2]
 methods=methods.split(',')
 
-ycol=params[3]
+count=params[3]
+
 
 vp=params[4]
 vp=vp.split(',')
+ycol=params[5]
 
-count=params[5]
 
 path=r'./upload/'+file
 df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
