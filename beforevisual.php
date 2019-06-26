@@ -96,7 +96,7 @@
           echo "<img class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/bar.png\"></a>";
         }
         ?><br /><br />
-        <small>遺失率低於5%較為無關緊要，超過10%可能導致統計分析偏差</small>
+        <small>遺失率超過10%可能導致統計分析偏差</small>
       </div>
       <div class="col text-center" id="heatmap">
         <h2>熱圖 Heatmap</h2>

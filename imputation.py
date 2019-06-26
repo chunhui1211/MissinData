@@ -107,7 +107,6 @@ def replace_mice(method):
     del_col=train_df.select_dtypes(include=['object']).columns
     for i in del_col:
         train_df=train_df.drop([i],axis=1)
-
     countcolumns=0
     for i in train_df.columns: 
         if(i==var):
@@ -121,10 +120,10 @@ def replace_mice(method):
     XY_completed = np.mean(XY_completed, 0)
     XY_completed = np.round(XY_completed)   
     new_df = pd.read_csv(path,parse_dates=True,encoding='utf-8') 
-    data_null_len=len(train_df[train_df[var].isnull()])
+    data_null_len=len(new_df[new_df[var].isnull()])
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
-        new_df[var].loc[xx]=XY_completed[xx][inx]
+        new_df[var].loc[xx]=abs(XY_completed[xx][inx])
     return new_df
 def plot(method,new_df):
     for x in vp:       

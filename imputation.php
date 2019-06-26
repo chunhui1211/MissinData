@@ -37,9 +37,6 @@ if ($_POST['submit'] == 'imputation') {
 
     $sum = "/xampp/htdocs/MissingData/imputation.py " . $new_name . ";" . $colname . ";" . $method . ";" . $count . ";". $vp . ";" . $ycol . ";";
     shell_exec($sum);
-    // $sumplot = "/xampp/htdocs/MissingData/plot.py " . $new_name . ";" . $colname . ";" . $method . ";" . $count . ";" . $vp . ";" . $ycol . ";";
-    // echo shell_exec($sumplot);
-
     header("Location: http://localhost/Missingdata/afterload.php");
     exit;
 } else if ($_POST['submit'] == 'check') {
@@ -63,7 +60,7 @@ if ($_POST['submit'] == 'imputation') {
     array_push($_SESSION['list'], array ($colname,$method));
 
     $var="/xampp/htdocs/MissingData/check_imputation.py ".$new_name.";".$colname.";".$method.";";
-    echo shell_exec($var);
+    shell_exec($var);
     foreach($_SESSION['col_cage'] as $key => $value)
     {
         if($colname==$value)

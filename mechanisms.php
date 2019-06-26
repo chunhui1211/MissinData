@@ -134,9 +134,9 @@
                   <hr>
                   <h4><strong>視覺化圖表樣式</strong></h4>
                   <input type="checkbox" name="vp[bar]" class="vp" id="bar" disabled>
-                  <label for="bar">數值長條圖</label>
+                  <label for="bar">長條圖</label>
                   <input type="checkbox" name="vp[cabar]" class="vp" id="cabar" disabled>
-                  <label for="cabar">文字長條圖</label>
+                  <label for="cabar">長條圖</label>
                   <input type="checkbox" name="vp[pie]" class="vp" id="pie" disabled>
                   <label for="pie">圓餅圖</label>
                   <input type="checkbox" name="vp[box]" class="vp" id="box" disabled>

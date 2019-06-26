@@ -20,10 +20,6 @@ def del_var(df,var):#列
     return df
 def replace_mean(df,var):
     df[var]=df[var].fillna(round(df[var].mean()))  
-    # if(df[var].dtypes=='int64'):
-    #     df[var]=df[var].fillna(round(df[var].mean()))
-    # elif(df[var].dtypes=='float64'):
-    #     df[var]=df[var].fillna(round(df[var].mean(),2))  
     return df
 def replace_custom(df,var,value):
     df[var] = df[var].fillna(value)
@@ -43,7 +39,7 @@ def replace_knn(train_df,var):
         data=data.drop([i],axis=1)
     data=data.drop([var],axis=1)
     data.fillna(0,inplace=True)
-    new_df = pd.read_csv(path) 
+    new_df = pd.read_csv(path,parse_dates=True,encoding='utf-8') 
     data_null_len=len(new_df[new_df[var].isnull()])
     for i in range(data_null_len):
         xx=df[df[var].isnull()].index[i]
@@ -61,7 +57,7 @@ def replace_linear(train_df,var):
     lm.fit(x,y)
     train_x=train_df[train_df[var].isnull()].drop([var],1)
     train_x.fillna(0,inplace=True)
-    new_df = pd.read_csv(path) 
+    new_df = pd.read_csv(path,parse_dates=True,encoding='utf-8') 
     data_null_len=len(train_df[train_df[var].isnull()])
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
@@ -81,7 +77,7 @@ def replace_logistic(train_df,var):
     lg.fit(x,y)
     test_x=train_df[train_df[var].isnull()].drop([var],1)
     test_x.fillna(0,inplace=True)
-    new_df = pd.read_csv(path) 
+    new_df = pd.read_csv(path,parse_dates=True,encoding='utf-8') 
     data_null_len=len(train_df[train_df[var].isnull()])
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
@@ -107,12 +103,11 @@ def replace_mice(train_df,var):
     XY_completed = np.mean(XY_completed, 0)
     XY_completed = np.round(XY_completed)
     
-    new_df = pd.read_csv(path)
-    data_null_len=len(train_df[train_df[var].isnull()])
-
+    new_df = pd.read_csv(path,parse_dates=True,encoding='utf-8') 
+    data_null_len=len(new_df[new_df[var].isnull()])
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
-        new_df[var].loc[xx]=XY_completed[xx][inx]
+        new_df[var].loc[xx]=abs(XY_completed[xx][inx])
     return new_df
 
 if (method=='mean'):
