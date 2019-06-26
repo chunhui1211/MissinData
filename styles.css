@@ -1,7 +1,7 @@
 body{
     font-family: "Microsoft JhengHei";
     font-size: 1.2rem;
-    background-color: rgb(243, 243, 243);
+    /* background-color: rgb(243, 243, 243); */
 
 }
 a {
@@ -34,32 +34,32 @@ p{
 }
 .factor 
 {
-    width: 600px;
-    height: 300px;
+    width: 30%;
+    height: 30%;
     margin: 20px 10px;
 }
 .cabar 
 {
-    width: 400px;
-    height: 400px;
+    width: 30%;
+    height: 30%;
     margin: 20px 10px;
 }
 
 .box 
 {
-    width: 300px;
-    height: 500px;
+    width: 15%;
+    height: 15%;
     margin: 20px 10px;
 }
 .joint 
 {
-    width: 500px;
-    height: 500px;
+    width: 25%;
+    height: 25%;
     margin: 20px 10px;
 }
 .pie 
 {
-    width: 300px;
-    height: 300px;
+    width: 25%;
+    height: 25%;
     margin: 20px 10px;
 }

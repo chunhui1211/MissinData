@@ -67,37 +67,17 @@
               </div>
             </div>
           </div>
-
         </form>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col">
-        <?php
-
+      <?php
         require_once "C:/xampp/htdocs/Missingdata/PHPExcel/Classes/PHPExcel.php";
         $excelObj = PHPExcel_IOFactory::load("upload/" . $_SESSION['new_name']);
         $worksheet = $excelObj->getSheet(0);
         $toCol = $worksheet->getHighestColumn();
         $toCol++;
-
-        // $arrayhead=array();
-        // for($col = "A"; $col != $toCol; $col++) 
-        // { 
-
-        //   for($row=1;$row<=$worksheet->getHighestRow();$row++)
-        //   {
-        //     if($worksheet->getCell($col.$row)->getValue()===null)
-        //     {
-        //       $roww=1;         
-        //       $head=$worksheet->getCell($col.$roww)->getValue();       
-        //       array_push($arrayhead,$head);
-        //       break;
-        //     }
-        //   }                                
-        // } 
-        // $_SESSION['colname']=$arrayhead;
-
         echo '<table>';
         for ($row = 1; $row <= $worksheet->getHighestRow(); $row++) {
           $toCol = $worksheet->getHighestColumn();
@@ -111,15 +91,12 @@
           echo "</tr>";
         }
         echo '</table>';
-        ?>
+      ?>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 </body>
-<script type="text/javascript">
-  // window.history.forward(1);
-</script>
 
 </html>

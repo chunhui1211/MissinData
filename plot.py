@@ -89,11 +89,9 @@ def jointplot(method,df,im_df,var,y_col):
     s=[] 
     for i in range(len(df)):
         if df[var].iloc[i]==im_df[var].iloc[i]:
-            # print("o",i,df[var].iloc[i],im_df[var].iloc[i])
             a.append(df[var].iloc[i])
             b.append(df[y_col].iloc[i])
         else:
-            # print("x",i,df[var].iloc[i],im_df[var].iloc[i])
             n.append(im_df[var].iloc[i])
             s.append(im_df[y_col].iloc[i])    
     graph=sns.jointplot(a,b, data=df, kind="reg",color='b')

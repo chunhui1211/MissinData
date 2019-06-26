@@ -24,7 +24,6 @@
   <div class="container-fluid">
     <div class="row ml-5 mt-3">
       <?php
-
       session_start();
       $new_name = $_SESSION['new_name'];
       echo "<span>檔名新名稱:" . $new_name . "</span>";
@@ -52,19 +51,21 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
-        <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal" onclick="location.href='http://localhost/Missingdata/delcol.php'"><i class="fas fa-sliders-h mr-2"></i>調整資料集</button>
-        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
-                <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+      <form action="del_img.php" method="post" enctype="multipart/form-data">
+        <div class="col-1">
+          <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="fas fa-sliders-h mr-2"></i>調整資料集</button>
+          <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
+                  <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <div class="col-10">
       </div>
     </div>
@@ -111,10 +112,44 @@
         <small>無效相關範圍從-1(如果一個變量出現另一個肯定沒有)
           到0(出現或不出現的變量對彼此沒有影響)
           到1(如果一個變量出現另一個肯定也出現)</small>
-         <br/><br/><br/> 
       </div>
-      
     </div>
+    <h1 class="text-center mt-4 mb-4">資料統計資訊</h1>
+    <div class="row">
+      <div class="col text-center">
+        <?php
+        require_once "C:/xampp/htdocs/Missingdata/PHPExcel/Classes/PHPExcel.php";
+        $excelObj = PHPExcel_IOFactory::load("missinginfo/" . $new_name[0] . "/describe.csv");
+        $worksheet = $excelObj->getSheet(0);
+        $toCol = $worksheet->getHighestColumn();
+        $toCol++;
+        echo '<table>';
+        for ($row = 1; $row <= $worksheet->getHighestRow(); $row++) {
+          $toCol = $worksheet->getHighestColumn();
+          $toCol++;
+          echo "<tr>";
+          for ($col = "A"; $col != $toCol; $col++) {
+            echo "<td>";
+            echo $worksheet->getCell($col . $row)->getValue();
+            echo "</td>";
+          }
+          echo "</tr>";
+        }
+        echo '</table>';
+        ?>
+      </div>
+      <div class="col ">
+        <?php
+        for ($i = 0; $i < count($_SESSION['colname']); $i++) {
+          echo $_SESSION['colname'][$i] . ':' . $_SESSION['rate'][$i] . '%';
+          echo "<br/>";
+        }
+        ?>
+      </div>
+      <div class="col text-center">
+      </div>
+    </div>
+    <br /><br /><br />
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -126,12 +161,10 @@
 </body>
 <script>
   $('.fancybox').fancybox();
-  var len=$('#heatmap').find("img")
-  if(len.length==0)
-  {
-    $('#heatmap').css( "display", "none" )
+  var len = $('#heatmap').find("img")
+  if (len.length == 0) {
+    $('#heatmap').css("display", "none")
   }
-
 </script>
 
 </html>

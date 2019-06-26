@@ -156,7 +156,7 @@ def cabarplot(method,new_df):
                     fontsize=12, color='red', ha='center', va='bottom')
     plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_cabar.png',bbox_inches='tight',facecolor="w" )
 def pieplot(method,new_df): 
-    plt.figure() 
+    plt.figure(figsize=(3,3))
     plt.title(enmethoden(method),fontsize=24)
     dfp=new_df[var].value_counts()
     plt.pie(dfp.values[:5], labels=dfp.index.values[:5],autopct='%1.1f%%', shadow=True)

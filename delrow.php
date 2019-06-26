@@ -22,34 +22,31 @@
             </div>
         </div>
     </div>
-    <form id="form1" action="del_col.php" method="post" enctype="multipart/form-data">
+    <form id="form1" action="del_row.php" method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="row mt-3">
                 <div class="col">
-                    <p><i class="fas fa-trash-alt mr-2"></i></i>請選擇欲刪除的欄位</p>
-                    <input type="checkbox" name="col[]" id="none" />
-                    <label for="none">無</label><br />
-                    <?php
-                    session_start();
-                    $new_name = $_SESSION['new_name'];
-                    for ($i = 0; $i < count($_SESSION['colname']); $i++) {
-                        echo "<input type='checkbox' name='col[]' id='{$_SESSION['colname'][$i]}' value='{$_SESSION['colname'][$i]}'>";
-                        echo "<label for='{$_SESSION['colname'][$i]}'>{$_SESSION['colname'][$i]}</label>";
-                        echo "<br/>";
-                    }
-                    ?>
-                    <br/>
-                     <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>下一步</button>
+                    <p><i class="fas fa-trash-alt mr-2"></i>請設定遺漏個數，刪除資料列</p>
+                    <input type="radio" name="del" id="nonee" value="none" />
+                    <label for="nonee">無</label><br />
+                    <input type="radio" name="del" id="number" value="number" />
+                    <input type="textbox" name="delnumber" style="width:30px;" id="numtext" />
+                    <label for="number">個</label><br />
+                    <small>註:遺漏個數為x個，則將遺漏x個以上的資料整筆刪除</small>
+                    <br /><br /><br /><br /><br /><br />                   
+                    <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>下一步</button>
                 </div>
                 <div class="col">
-                    <p><i class="fas fa-percent mr-2"></i>遺失率參考圖</p>
+                    <p><i class="fas fa-question-circle mr-2"></i>遺漏個數參考圖</p>
                     <?php
-                    $new_name = explode(".", $new_name);
-                    if (file_exists("./missinginfo/" . $new_name[0] . "/missingrate.png")) {
-                        echo  "<a href=\"missinginfo/" . $new_name[0] . "/missingrate.png\" class=\"fancybox\">";
-                        echo "<img class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/missingrate.png\"></a>";
-                    }
+                        session_start();
+                        $new_name = explode(".", $_SESSION['new_name']);
+                        if (file_exists("./missinginfo/" . $new_name[0] . "/missingcount.png")) {
+                            echo  "<a href=\"missinginfo/" . $new_name[0] . "/missingcount.png\" class=\"fancybox\">";
+                            echo "<img class=\"msno\" src=\"./missinginfo/" . $new_name[0] . "/missingcount.png\"></a>";
+                        }
                     ?>
+
                 </div>
             </div>
           
@@ -75,7 +72,7 @@
     <script type="text/javascript">
         $('.fancybox').fancybox();
         $('button[type="submit"]').click(function() {
-            var colname = $('input[name="col[]"]:checked').length;
+            var colname = $('input[name="del"]:checked').length;
             if (colname == 0) {
                 alert("請選擇選項");
                 return false;
