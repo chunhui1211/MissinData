@@ -36,7 +36,7 @@ if ($_POST['submit'] == 'imputation') {
     trim($colname);
 
     $sum = "/xampp/htdocs/MissingData/imputation.py " . $new_name . ";" . $colname . ";" . $method . ";" . $count . ";". $vp . ";" . $ycol . ";";
-    shell_exec($sum);
+    echo shell_exec($sum);
     header("Location: http://localhost/Missingdata/afterload.php");
     exit;
 } else if ($_POST['submit'] == 'check') {

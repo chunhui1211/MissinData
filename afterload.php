@@ -110,6 +110,7 @@
                         <a class="nav-item nav-link " id="cabar" data-toggle="tab" href="#nav-cabar">文字長條圖</a>
                         <a class="nav-item nav-link " id="pie" data-toggle="tab" href="#nav-pie">圓餅圖</a>
                         <a class="nav-item nav-link " id="box" data-toggle="tab" href="#nav-box">盒狀圖</a>
+                        <a class="nav-item nav-link " id="dist" data-toggle="tab" href="#nav-dist">密度圖</a>
                         <a class="nav-item nav-link" id="joint" data-toggle="tab" href="#nav-joint">散點圖</a>
                     </div>
                 </nav>
@@ -158,6 +159,11 @@
                     <div class="tab-pane fade" id="nav-box" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <?php
                         displayimg("box");
+                        ?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-dist" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <?php
+                        displayimg("dist");
                         ?>
                     </div>
                     <div class="tab-pane fade" id="nav-joint" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -214,65 +220,20 @@
                 $opname = explode(".", $opname);
                 if ($i == 0) {
                     echo "<div class='col-1'>";
-                    // echo "<li class='nav-item'>";
-                    // echo "<a class='nav-link active'  data-toggle='tab' href='#f{$opname[0]}'>";
                     $m = enmethodtoch($method[$i]);
                     displayfile($opname, $m);
-                    // echo "</a>";
-                    // echo "</li>";
                     echo "</div>";
                 } else {
                     echo "<div class='col-1'>";
-                    // echo "<li class='nav-item'>";
-                    // echo "<a class='nav-link'  data-toggle='tab' href='#f{$opname[0]}'>";
-                    // echo enmethodtoch($method[$i]);
+
                     $m = enmethodtoch($method[$i]);
                     displayfile($opname, $m);
-                    // echo "</a>";
-                    // echo "</li>";
                     echo "</div>";
                 }
             }
             ?>
-            <!-- </ul> -->
 
-            <!-- <div class="tab-content p-2"> -->
             <?php
-            // for ($i = 0 ; $i < count($method) ; $i++) {
-            //     $opname=$_SESSION['count'].$_SESSION['col'].$method[$i].'_'.$new_name;
-            //     $opname=explode(".", $opname);
-            //     if ($i==0) {
-            //         // echo "<div class='tab-pane fade show active' id='f{$opname[0]}'>";
-            //         displayfile($opname);
-            //         // echo "</div>";
-            //     } else {
-            //         // echo "<div class='tab-pane fade' id='f{$opname[0]}'>";
-            //         displayfile($opname);
-            //         // echo "</div>";
-            //     }
-            // }
-            // function displayfile($opname)
-            // {
-            //     require_once "C:/xampp/htdocs/Missingdata/PHPExcel/Classes/PHPExcel.php";
-            //     $excelObj = PHPExcel_IOFactory::load("download/".$opname[0].'.'.$opname[1]);
-            //     $worksheet = $excelObj->getSheet(0);
-            //     $lastRow = $worksheet->getHighestRow();
-            //     $lastColumn = $worksheet->getHighestColumn();
-            //     echo "<div id='{$opname[0]}'>";
-            //     echo '<table>';
-            //     for ($row=1;$row<=$worksheet->getHighestRow();$row++) {
-            //         $toCol = $worksheet->getHighestColumn();
-            //         $toCol++;
-            //         echo "<tr>";
-            //         for ($col = "A"; $col != $toCol; $col++) {
-            //             echo "<td>";
-            //             echo $worksheet->getCell($col.$row)->getValue();
-            //             echo "</td>";
-            //         }
-            //         echo "</tr>";
-            //     }
-            //     echo '</table></div>';
-            // }
             function displayfile($opname, $m)
             {
                 require_once "C:/xampp/htdocs/Missingdata/PHPExcel/Classes/PHPExcel.php";
@@ -331,6 +292,9 @@
         }
         if ($("img[class='joint']").length > 0) {
             $("#joint").append($("<span>").addClass("badge badge-danger").text($("img[class='joint']").length));
+        }
+        if ($("img[class='dist']").length > 0) {
+            $("#dist").append($("<span>").addClass("badge badge-danger").text($("img[class='dist']").length));
         }
     });
 </script>

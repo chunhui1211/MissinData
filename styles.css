@@ -47,7 +47,7 @@ p{
 
 .box 
 {
-    width: 15%;
+    width: 20%;
     height: 15%;
     margin: 20px 10px;
 }
@@ -57,9 +57,15 @@ p{
     height: 25%;
     margin: 20px 10px;
 }
+.dist 
+{
+    width: 30%;
+    height: 30%;
+    margin: 20px 10px;
+}
 .pie 
 {
-    width: 25%;
-    height: 25%;
+    width: 20%;
+    height: 20%;
     margin: 20px 10px;
 }

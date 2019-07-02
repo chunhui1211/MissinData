@@ -136,7 +136,12 @@ def plot(method,new_df):
         elif(x=='box'):
             boxplot(method,new_df)
         elif(x=='joint'):
-            jointplot(method,df,new_df,ycol)
+            if(method=='del'):
+                Og_jointplot(method,new_df,ycol)
+            else:
+                jointplot(method,df,new_df,ycol)
+        elif(x=='dist'):
+            distplot(method,new_df)
 def barplot(method,new_df): 
     plt.figure()
     g=sns.factorplot(var,data=new_df,aspect=2,kind="count",color="steelblue")
@@ -180,21 +185,30 @@ def jointplot(method,df,new_df,y_col):
     s=[] 
     for i in range(len(df)):
         if df[var].iloc[i]==new_df[var].iloc[i]:
-            # print("o",i,df[var].iloc[i],im_df[var].iloc[i])
             a.append(df[var].iloc[i])
             b.append(df[y_col].iloc[i])
         else:
-            # print("x",i,df[var].iloc[i],im_df[var].iloc[i])
             n.append(new_df[var].iloc[i])
             s.append(new_df[y_col].iloc[i])    
     graph=sns.jointplot(a,b, data=df, kind="reg",color='b')
     graph.x=n
     graph.y=s
-    graph.plot_joint(plt.scatter,marker='o',alpha=1,color=randomlist[0])
+    graph.plot_joint(plt.scatter,marker='+',alpha=1,color=randomlist[0])
     plt.subplots_adjust(top=0.9)
     graph.fig.suptitle(enmethoden(method), fontsize=24)
     graph.set_axis_labels(var, y_col, fontsize=24)    
     plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_joint.png',bbox_inches='tight',facecolor="w" )
+def distplot(method,new_df):
+    plt.figure()
+    sns.distplot(new_df[var]) 
+    plt.title(enmethoden(method),fontsize=24)
+    plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_dist.png',bbox_inches='tight',facecolor="w" )
+def Og_distplot(method,new_df):
+    new_df=new_df.dropna()
+    plt.figure()
+    sns.distplot(new_df[var]) 
+    plt.title(enmethoden(method),fontsize=24)
+    plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_dist.png',bbox_inches='tight',facecolor="w" )
 def enmethoden(methods):
     if(methods=="mean"):
         return methods.replace("mean","平均值")
@@ -213,7 +227,22 @@ def enmethoden(methods):
     elif(methods=="mice"):
         return methods.replace("mice","多重插補法")
     else:
-        return methods.replace("first","原始資料")
+        return methods.replace("Afirst","原始資料")
+
+for x in vp: 
+    print(x)
+    if(x=='bar'):  
+        barplot("Afirst",df)
+    elif(x=='cabar'):  
+        cabarplot("Afirst",df)
+    elif(x=='pie'):  
+        pieplot("Afirst",df)
+    elif(x=='box'):
+        boxplot("Afirst",df)
+    elif(x=='dist'):
+        Og_distplot("Afirst",df)
+    elif(x=='joint'):
+        Og_jointplot("Afirst",df,ycol)
 
 for method in methods:
     if (method=='mean'):
@@ -239,16 +268,6 @@ for method in methods:
         plot(method,new_df)
     new_df.to_csv('./download/'+count+var+method+'_'+file,index=False,encoding='utf-8-sig')
 
-for x in vp:
-    if(x=='bar'):  
-        barplot("first",df)
-    elif(x=='cabar'):  
-        cabarplot("first",df)
-    elif(x=='pie'):  
-        pieplot("first",df)
-    elif(x=='box'):
-        boxplot("first",df)
-    elif(x=='joint'):
-        Og_jointplot("first",df,ycol)
+
 
         

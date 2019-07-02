@@ -141,6 +141,8 @@
                   <label for="pie">圓餅圖</label>
                   <input type="checkbox" name="vp[box]" class="vp" id="box" disabled>
                   <label for="box">盒狀圖</label>
+                  <input type="checkbox" name="vp[dist]" class="vp" id="dist" disabled>
+                  <label for="dist">密度圖</label>
                   <input type="checkbox" name="vp[joint]" class="vp" id="joint" disabled>
                   <label for="joint">散點圖</label>
                   <select id="select" name='ycol' class="custom-select" multiple></select>
@@ -281,6 +283,7 @@
         $('#joint').attr("disabled", false);
         $('#cabar').attr("disabled", false);
         $('#pie').attr("disabled", false);
+        $('#dist').attr("disabled", false);
       })
 
       $('#select').hide();
@@ -307,6 +310,7 @@
         $('label[for=bar],input#bar').hide();
         $('label[for=box],input#box').hide();
         $('label[for=joint],input#joint').hide();
+        $('label[for=dist],input#dist').hide();
         
         $('label[for=mean1],input#mean1').hide();
         $('label[for=knn1],input#knn1').hide();
@@ -327,6 +331,7 @@
         $('label[for=bar],input#bar').show();
         $('label[for=box],input#box').show();
         $('label[for=joint],input#joint').show();
+        $('label[for=dist],input#dist').show();
 
         $('label[for=logistic1],input#logistic1').hide();
         $('label[for=mean1],input#mean1').show();
