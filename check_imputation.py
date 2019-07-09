@@ -44,7 +44,7 @@ def replace_knn(train_df,var):
     for i in range(data_null_len):
         xx=df[df[var].isnull()].index[i]
         Xnew=np.array([data.iloc[xx].tolist()])
-        new_df[var].loc[xx]=knn.predict(Xnew)[0]       
+        new_df[var].loc[xx]=round(knn.predict(Xnew)[0])       
     return new_df
 def replace_linear(train_df,var):
     del_col=train_df.select_dtypes(include=['object']).columns

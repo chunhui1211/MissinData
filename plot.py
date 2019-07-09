@@ -31,27 +31,16 @@ ycol=params[5]
 
 path=r'./upload/'+file
 df=pd.read_csv(path, parse_dates=True,encoding='utf-8')
-
 name=file.split('.',1) 
 plt.rcParams["axes.labelsize"] = 24 
 plt.rcParams['axes.unicode_minus']=False
 def barplot(method,im_df,var): 
     plt.figure()
-    # df[var]=round(df[var])
-    # im_df[var]=round(im_df[var])
     g=sns.factorplot(var,data=im_df,aspect=2,kind="count",color="steelblue")
     if len(np.unique(im_df[var]))>=20:
-        # x=max(im_df[var])-min(im_df[var])
-        # y=round(x/20)
         g.set_xticklabels(step=10,rotation=35)
     plt.title(enmethoden(method),fontsize=24)
     plt.ScalarFormatter()
-
-    # ax = plt.gca()     
-    # for p in ax.patches:
-    #     if(p.get_height()==im_df[var].value_counts().max()):  
-    #         ax.text(p.get_x() + p.get_width()/2., p.get_height(), '%d' % int(p.get_height()), 
-    #                 fontsize=12, color='red', ha='center', va='bottom')
     plt.savefig('./imputation_photo/'+name[0]+'/'+count+var+'_'+method+'_factor.png',bbox_inches='tight',facecolor="w" )
 def cabarplot(method,im_df,var): 
     plt.figure(figsize=(12,12))

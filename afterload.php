@@ -106,11 +106,11 @@
                 <h1>視覺化圖表</h1>
                 <nav>
                     <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="factor" data-toggle="tab" href="#nav-factor">數值長條圖</a>
-                        <a class="nav-item nav-link " id="cabar" data-toggle="tab" href="#nav-cabar">文字長條圖</a>
+                        <a class="nav-item nav-link active" id="factor" data-toggle="tab" href="#nav-factor">長條圖</a>
+                        <a class="nav-item nav-link " id="cabar" data-toggle="tab" href="#nav-cabar">直方圖</a>
                         <a class="nav-item nav-link " id="pie" data-toggle="tab" href="#nav-pie">圓餅圖</a>
                         <a class="nav-item nav-link " id="box" data-toggle="tab" href="#nav-box">盒狀圖</a>
-                        <a class="nav-item nav-link " id="dist" data-toggle="tab" href="#nav-dist">密度圖</a>
+                        <!-- <a class="nav-item nav-link " id="dist" data-toggle="tab" href="#nav-dist">密度圖</a> -->
                         <a class="nav-item nav-link" id="joint" data-toggle="tab" href="#nav-joint">散點圖</a>
                     </div>
                 </nav>
@@ -152,7 +152,9 @@
                         ?>
                     </div>
                     <div class="tab-pane fade" id="nav-pie" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <small>此樣式圓餅圖將列出比例較高五筆資料</small><br>
                         <?php
+                        
                         displayimg("pie");
                         ?>
                     </div>

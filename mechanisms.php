@@ -136,13 +136,13 @@
                   <input type="checkbox" name="vp[bar]" class="vp" id="bar" disabled>
                   <label for="bar">長條圖</label>
                   <input type="checkbox" name="vp[cabar]" class="vp" id="cabar" disabled>
-                  <label for="cabar">長條圖</label>
+                  <label for="cabar">直方圖</label>
                   <input type="checkbox" name="vp[pie]" class="vp" id="pie" disabled>
                   <label for="pie">圓餅圖</label>
                   <input type="checkbox" name="vp[box]" class="vp" id="box" disabled>
                   <label for="box">盒狀圖</label>
-                  <input type="checkbox" name="vp[dist]" class="vp" id="dist" disabled>
-                  <label for="dist">密度圖</label>
+                  <!-- <input type="checkbox" name="vp[dist]" class="vp" id="dist" disabled>
+                  <label for="dist">密度圖</label> -->
                   <input type="checkbox" name="vp[joint]" class="vp" id="joint" disabled>
                   <label for="joint">散點圖</label>
                   <select id="select" name='ycol' class="custom-select" multiple></select>

@@ -61,7 +61,7 @@ def replace_knn(method):
     for i in range(data_null_len):
         xx=train_df[train_df[var].isnull()].index[i]
         Xnew=np.array([data.iloc[xx].tolist()])
-        new_df[var].loc[xx]=knn.predict(Xnew)[0]    
+        new_df[var].loc[xx]=round(knn.predict(Xnew)[0])     
     return new_df 
 def replace_linear(method):
     train_df=pd.read_csv(path, parse_dates=True,encoding='utf-8')

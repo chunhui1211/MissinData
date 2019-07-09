@@ -8,8 +8,7 @@ $missing=explode(",",$missingrate[0]);
 $rate=explode(",",$missingrate[1]);
 $_SESSION['colname']=$missing;
 $_SESSION['rate']=$rate;
-// $missing=explode(",",$missingrate);
-// $_SESSION['colname']=$missing;
+
 header("Location: http://localhost/Missingdata/beforevisual.php");   
 exit;
 ?>
