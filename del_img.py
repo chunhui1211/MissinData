@@ -7,6 +7,7 @@ import xlrd
 import io
 import seaborn as sns
 from collections import Counter
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 sns.set(font=['sans-serif'])  
 sns.set_style("whitegrid",{"font.sans-serif":['Microsoft JhengHei']})
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -55,10 +56,14 @@ for i in range(len(keys)):
 data=sorted(data)
 x = [p[0] for p in data]
 y = [p[1] for p in data]
+
 plt.figure()
 plt.plot(x, y, '-o')
-plt.xlabel('遺漏個數')
-plt.ylabel('遺漏總數')    
+ax = plt.gca() 
+xmajorLocator  = MultipleLocator(1)
+ax.xaxis.set_major_locator(xmajorLocator)
+plt.xlabel('遺漏欄位數')
+plt.ylabel('遺漏資料量')    
 for a, b in zip(x, y):
     plt.text(a, b, b, ha='center', va='bottom', fontsize=20)
 plt.savefig('./missinginfo/'+params[0]+'/missingcount.png',bbox_inches='tight')  

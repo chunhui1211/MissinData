@@ -26,18 +26,18 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col">
-                    <p><i class="fas fa-trash-alt mr-2"></i>請設定遺漏個數，刪除資料列</p>
+                    <p><i class="fas fa-trash-alt mr-2"></i>請設定遺漏欄位數，刪除資料列</p>
                     <input type="radio" name="del" id="nonee" value="none" />
                     <label for="nonee">無</label><br />
                     <input type="radio" name="del" id="number" value="number" />
                     <input type="textbox" name="delnumber" style="width:30px;" id="numtext" />
                     <label for="number">個</label><br />
-                    <small>註:遺漏個數為x個，則將遺漏x個以上的資料整筆刪除</small>
+                    <small>註:遺漏欄位數為x個，則將遺漏x個以上的資料整筆刪除</small>
                     <br /><br /><br /><br /><br /><br />                   
                     <button type="submit" class="btn btn-primary" name="submit" data-toggle="modal" data-target="#Modal"><i class="far fa-share-square mr-2"></i>下一步</button>
                 </div>
                 <div class="col">
-                    <p><i class="fas fa-question-circle mr-2"></i>遺漏個數參考圖</p>
+                    <p><i class="fas fa-question-circle mr-2"></i>遺漏欄位數參考圖</p>
                     <?php
                         session_start();
                         $new_name = explode(".", $_SESSION['new_name']);

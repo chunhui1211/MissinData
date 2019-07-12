@@ -116,7 +116,9 @@
     </div>
     <h1 class="text-center mt-4 mb-4">資料統計資訊</h1>
     <div class="row">
-      <div class="col text-center">
+  
+      <div class="col ">
+        <p><strong>描述性統計量</strong></p>
         <?php
         require_once "C:/xampp/htdocs/Missingdata/PHPExcel/Classes/PHPExcel.php";
         $excelObj = PHPExcel_IOFactory::load("missinginfo/" . $new_name[0] . "/describe.csv");
@@ -139,6 +141,7 @@
         ?>
       </div>
       <div class="col ">
+      <p><strong>遺失率</strong></p>
         <?php
         for ($i = 0; $i < count($_SESSION['colname']); $i++) {
           echo $_SESSION['colname'][$i] . ':' . $_SESSION['rate'][$i] . '%';
